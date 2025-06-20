@@ -38,6 +38,21 @@ button {
   border-radius: var(--border-radius-button)
 }
 
+.button-secondary {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+}
+
+.button-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.button-secondary:hover {
+  background-color: var(--primary-color-hover);
+  filter: brightness(1)
+}
+
 button:hover {
   cursor: pointer;
   filter: brightness(0.9);

@@ -1,0 +1,36 @@
+.home-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 100px;
+  gap: 24px;
+  height: calc(100vh - 150px);
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 50% -500%,rgba(43, 153, 250, 1) 0%, 
+    rgba(43, 153, 250, 0) 100%);
+}
+
+.home-title {
+  font-size: 82px;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+.home-slogan {
+  font-size: 32px;
+  font-weight: 400;
+  width: 40%;
+  text-align: center;
+}
+
+.button-je-me-lance {
+  padding: 10px 120px;
+}
+
+.demo-img { 
+  position: absolute;
+  bottom : -180px;
+}

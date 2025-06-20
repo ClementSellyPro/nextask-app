@@ -2,11 +2,8 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 48px 62px;
-}
-
-.logo {
-
+  padding: 0 62px;
+  height: 150px;
 }
 
 .buttons {
@@ -15,21 +12,6 @@ header {
   gap: 12px;
 }
 
-/* button {
-  set into the global styles.css;
+/* all buttons {
+  are set into the global styles.css;
 } */
-
-.button-connexion {
-  background-color: transparent;
-  border: 2px solid var(--primary-color);
-}
-
-.button-create-account {
-  background-color: var(--primary-color);
-  color: white;
-}
-
-.button-connexion:hover {
-  background-color: var(--primary-color-hover);
-  filter: brightness(1)
-}
