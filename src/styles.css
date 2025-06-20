@@ -1,6 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Major+Mono+Display&display=swap');
 
+:root {
+  --primary-color: #2B99FA;
+  --primary-color-hover: #d6ecff;
+  --text-color: #29293A;
+  --border-radius-button: 8px;
+
+
+  --red-color: #DA2C38;
+  --pink-color: #DE5073;
+  --orange-color: #FF8600;
+  --yellow-color: #FFD500;
+  --green-color: #7CB518;
+  --blue-color: #2B99FA;
+  --purple-color: #758BFD;
+  --dark-purple-color: #27187E;
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -9,4 +27,18 @@
 
 body {
   font-family: 'Inter', sans-serif;
+}
+
+button {
+  border: none;
+  padding: 10px 20px;
+  min-width: 180px;
+  font-weight: 500;
+  font-size: 18px;
+  border-radius: var(--border-radius-button)
+}
+
+button:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
 }
