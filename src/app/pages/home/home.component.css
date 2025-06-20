@@ -34,3 +34,44 @@
   position: absolute;
   bottom : -180px;
 }
+
+@media (max-width: 1199px) {
+  .home-container {
+    padding-top: 80px;
+    height: calc(100vh - 100px);
+  }
+
+  .home-title {
+    text-align: center;
+    font-size: 64px;
+    font-weight: 800;
+  }
+  
+  .home-slogan {
+    width: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    gap: 32px;
+    height: calc(100vh - 80px);
+  }
+
+  .home-title {
+    text-align: center;
+    font-size: 52px;
+    font-weight: 600;
+  }
+  
+  .home-slogan {
+    font-size: 24px;
+    width: 75%;
+  }
+  
+  .button-je-me-lance {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 80px;
+  }
+}

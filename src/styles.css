@@ -50,10 +50,24 @@ button {
 
 .button-secondary:hover {
   background-color: var(--primary-color-hover);
-  filter: brightness(1)
+  filter: brightness(1);
 }
 
 button:hover {
   cursor: pointer;
   filter: brightness(0.9);
+}
+
+@media (max-width: 768px) {
+  button {
+    padding: 8px 12px;
+    min-width: 100px;
+    font-weight: 500;
+    font-size: 12px;
+    border-radius: var(--border-radius-button)
+  }
+
+  .button-secondary {
+    border: 1px solid var(--primary-color);
+  }
 }
