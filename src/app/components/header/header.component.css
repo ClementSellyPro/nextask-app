@@ -6,7 +6,10 @@ header {
   height: 150px;
 }
 
-
+.logo:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
 
 .buttons {
   display: flex;

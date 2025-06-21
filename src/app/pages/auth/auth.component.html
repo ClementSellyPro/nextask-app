@@ -1,0 +1,19 @@
+<div class='auth-container'>
+  <h1 class='auth-title'>Créer un compte pour continuer</h1>
+  <form>
+    <div class='input-group'>
+      <label>Nom d'utilisateur:</label>
+      <input type='text' name='name' [(ngModel)]="name" />
+    </div>
+    <div class='input-group'>
+      <label>Mot de passe:</label>
+      <input type='text' name='password' [(ngModel)]="password" />
+    </div>
+
+    <button class='button-primary button-create-account' (click)="onSubmitAuth()">Créer un compte</button>
+  </form>
+  <div class='auth-bottom'>
+    <p>Vous avez déja un compte?</p>
+    <h2 routerLink="auth">Se connecter</h2>
+  </div>
+</div>

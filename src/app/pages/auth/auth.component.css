@@ -1,0 +1,82 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 42px;
+  height: calc(100vh - 150px);
+}
+
+.auth-title {
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  width: 500px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+label {
+  font-size: 20px;
+}
+
+input {
+  font-size: 24px;
+  border: 2px solid var(--text-color);
+  border-radius: var(--border-radius-button);
+  padding: 8px 10px;
+}
+
+input:focus {
+  outline: none;
+  border: 2px solid var(--primary-color);
+}
+
+.button-create-account{
+  margin-top: 32px;
+}
+
+.auth-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.auth-bottom p {
+  font-size: 14px;
+}
+
+.auth-bottom h2 {
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.auth-bottom h2:hover {
+  cursor: pointer;
+  filter: brightness(0.9);
+}
+
+@media (max-width: 1199px) {
+  .auth-container {
+    height: calc(100vh - 100px);
+  }
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    height: calc(100vh - 80px);
+  }
+}
