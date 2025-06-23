@@ -4,6 +4,7 @@ header {
   justify-content: space-between;
   padding: 0 62px;
   height: 150px;
+  background-color: var(--bg-color);
 }
 
 .logo:hover {

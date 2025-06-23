@@ -5,11 +5,14 @@
   align-items: center;
   gap: 42px;
   height: calc(100vh - 150px);
+  background: url('/assets/auth-img.png') no-repeat;
+  background-position: bottom 50px right 30px;
+  background-size: 350px 340px;
 }
 
 .auth-title {
   font-weight: 400;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .auth-container form {
@@ -29,13 +32,14 @@
 
 label {
   font-size: 20px;
+  font-weight: 300;
 }
 
 input {
   font-size: 24px;
   border: 2px solid var(--text-color);
   border-radius: var(--border-radius-button);
-  padding: 8px 10px;
+  padding: 8px 14px;
 }
 
 input:focus {
@@ -72,11 +76,42 @@ input:focus {
 @media (max-width: 1199px) {
   .auth-container {
     height: calc(100vh - 100px);
+    background-size: 250px 240px;
+  }
+
+  .auth-container form {
+    gap: 18px;
+    width: 55%;
+    min-width: 420px;
+  }
+
+  .input-group {
+    gap: 12px;
+  }
+
+  label {
+    font-size: 18px;
+  }
+
+  input {
+    font-size: 20px;
   }
 }
 
 @media (max-width: 768px) {
   .auth-container {
     height: calc(100vh - 80px);
+    justify-content: flex-start;
+    padding-top: 50px;
+  }
+
+  .auth-container form {
+    gap: 14px;
+    width: 90%;
+  }
+  
+  .button-create-account{
+    font-size: 18px;
+    margin-top: 24px;
   }
 }
