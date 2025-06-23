@@ -9,8 +9,12 @@ export const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'auth',
+    path: 'auth/:mode',
     component: AuthComponent
+  },
+  {
+    path: 'auth',
+    redirectTo: 'auth/login', pathMatch:'full'
   },
   {
     path: 'dashboard',

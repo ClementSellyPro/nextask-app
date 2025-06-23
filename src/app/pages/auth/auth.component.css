@@ -107,7 +107,8 @@ input:focus {
 
   .auth-container form {
     gap: 14px;
-    width: 90%;
+    width: 85%;
+    min-width: 320px;
   }
   
   .button-create-account{

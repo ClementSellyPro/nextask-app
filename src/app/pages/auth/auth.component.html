@@ -1,5 +1,8 @@
 <div class='auth-container'>
-  <h1 class='auth-title'>Créer un compte pour continuer</h1>
+  <h1 class='auth-title'>{{ isLoginMode ? 
+    'Connectez vous pour continuer' : 
+    'Créer un compte pour continuer' }}
+  </h1>
   <form>
     <div class='input-group'>
       <label>Nom d'utilisateur:</label>
@@ -10,10 +13,14 @@
       <input type='text' name='password' [(ngModel)]="password" />
     </div>
 
-    <button class='button-primary button-create-account' (click)="onSubmitAuth()">Créer un compte</button>
+    <button class='button-primary button-create-account' (click)="isLoginMode ? onSubmitLogin() : onSubmitSignup()">
+      {{ isLoginMode ? 'Se connecter' : 'Créer un compte' }}
+    </button>
   </form>
   <div class='auth-bottom'>
-    <p>Vous avez déja un compte?</p>
-    <h2 routerLink="auth">Se connecter</h2>
+    <p>{{ isLoginMode ? 'Vous n\'avez pas de compte' : 'Vous avez déja un compte?' }}</p>
+    <h2 [routerLink]="isLoginMode ? '/auth/signup' : '/auth/login'">
+      {{ isLoginMode ? 'Créer un compte' : 'Se connecter' }}
+    </h2>
   </div>
 </div>
