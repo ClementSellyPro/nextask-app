@@ -5,8 +5,12 @@
   --primary-color: #2B99FA;
   --primary-color-hover: #d6ecff;
   --text-color: #29293A;
+  --text-color-light: #6A6F7A;
   --border-radius-button: 8px;
   --bg-color: #f8fdfe;
+  --bg-element: #DAE0EC;
+
+  --border-radius: 10px;
 
   --red-color: #DA2C38;
   --pink-color: #DE5073;
@@ -27,6 +31,8 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  letter-spacing: -5%;
+  color: var(--text-color)
 }
 
 button {

@@ -1,0 +1,44 @@
+.dashboard-container {
+  height: calc(100vh - 100px);
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 62px;
+  border-bottom: 1px solid var(--bg-element);
+  color: var(--text-color-light);
+}
+
+.dashboard-title {
+  font-weight: 300;
+  padding: 14px 0;
+}
+
+.dashboard-filter-section {
+  position: relative;
+}
+
+.dashboard-filter-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+}
+
+.dashboard-filter-button:hover {
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  background-color: var(--bg-element);
+}
+
+.dashboard-filter-modal {
+  position: absolute;
+  background-color: var(--bg-element);
+  border-radius: var(--border-radius);
+  padding: 14px;
+  width: 300px;
+  top: 70px;
+  left: -150px;
+}

@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   gap: 42px;
-  height: calc(100vh - 150px);
+  height: calc(100vh - 100px);
   background: url('/assets/auth-img.png') no-repeat;
   background-position: bottom 50px right 30px;
   background-size: 350px 340px;
