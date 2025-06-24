@@ -1,0 +1,77 @@
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 62px;
+  border-bottom: 1px solid var(--bg-element);
+  color: var(--text-color-light);
+}
+
+.dashboard-title {
+  font-weight: 300;
+  padding: 14px 0;
+}
+
+.dashboard-filter-section {
+  position: relative;
+}
+
+.dashboard-filter-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 15px;
+}
+
+.dashboard-filter-button:hover {
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  background-color: var(--bg-element);
+}
+
+.dashboard-filter-modal {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background-color: var(--bg-element);
+  border: 1px solid var(--border-element);
+  border-radius: var(--border-radius);
+  padding: 14px 14px 22px 14px;
+  width: 250px;
+  top: 70px;
+  left: -150px;
+}
+
+.filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 4px
+}
+
+.filter-category {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.filter-element {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.filter-element:hover {
+  cursor: pointer;
+  background-color: var(--border-element);
+}
+
+.filter-tag {
+  background-color: var(--bg-color);
+  border-radius: 4px;
+  border: 1px solid var(--orange-color);
+  width: 100%;
+  padding: 5px 10px;
+}
