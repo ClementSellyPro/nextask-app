@@ -1,7 +1,10 @@
 .task-column-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
   background-color: var(--bg-element);
   border-radius: var(--border-radius-column);
-  width: 260px;
+  width: 300px;
   padding: 8px;
 }
 
@@ -32,8 +35,13 @@
   filter: brightness(0.95);
 }
 
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
 .add-task-button {
-  margin-top: 14px;
   border-radius: var(--border-radius);
   padding: 4px 14px;
 }
