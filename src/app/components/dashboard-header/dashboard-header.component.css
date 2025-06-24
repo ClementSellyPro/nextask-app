@@ -21,11 +21,11 @@
   align-items: center;
   gap: 10px;
   padding: 8px 15px;
+  border-radius: var(--border-radius);
 }
 
 .dashboard-filter-button:hover {
   cursor: pointer;
-  border-radius: var(--border-radius);
   background-color: var(--bg-element);
 }
 

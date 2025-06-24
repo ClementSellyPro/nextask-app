@@ -1,0 +1,45 @@
+.task-column-container {
+  background-color: var(--bg-element);
+  border-radius: var(--border-radius-column);
+  width: 260px;
+  padding: 8px;
+}
+
+.task-column-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-column-title {
+  font-weight: 500;
+  color: white;
+  background-color: #516DFF;
+  width: fit-content;
+  padding: 2px 14px;
+  border-radius: 20px;
+}
+
+.column-option-button {
+  margin-right: 4px;
+  padding: 10px 6px;
+  border-radius: 3px;
+}
+
+.column-option-button:hover {
+  cursor: pointer;
+  background-color: var(--bg-element);
+  filter: brightness(0.95);
+}
+
+.add-task-button {
+  margin-top: 14px;
+  border-radius: var(--border-radius);
+  padding: 4px 14px;
+}
+
+.add-task-button:hover {
+  cursor: pointer;
+  background-color: var(--bg-element);
+  filter: brightness(0.95);
+}
