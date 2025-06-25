@@ -7,6 +7,7 @@
   border-radius: var(--border-radius);
   border: 1px solid var(--border-element);
   padding: 8px 12px;
+  overflow: hidden;
 }
 
 .card-container:hover {
@@ -31,21 +32,68 @@
 
 /* change the width when hover */
 .card-content-check {
-  width: 10%;
+  width: 0%;
   display: none;
 }
 
-.card-content-check input {
-
+.card-content-check input:hover {
+  cursor: pointer;
 }
 
+/* ================================================================== */
+/* Masquer le checkbox natif */
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* Créer le checkbox personnalisé */
+.custom-checkbox {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.custom-checkbox .checkmark {
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ddd;
+  border-radius: 50%; /* Rond */
+  display: inline-block;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* État checked */
+.custom-checkbox input:checked + .checkmark {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+/* Icône (checkmark) */
+.custom-checkbox .checkmark::after {
+  content: "✓";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.custom-checkbox input:checked + .checkmark::after {
+  opacity: 1;
+}
+/* ========================================================== */
+
 .card-content-text {
-  width: 100%;
+  width: fit-content;
 }
 
 .card-content-title {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-color);
 }
 
@@ -66,16 +114,13 @@
 .card-details-time {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 .card-details-time-icon {
-
+  width: 10px;
 }
 
-.card-details-story {
-
-}
 
 .card-details-story-point {
   font-weight: 700;

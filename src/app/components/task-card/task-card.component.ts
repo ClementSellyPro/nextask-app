@@ -1,11 +1,47 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-task-card',
-  imports: [],
+  imports: [
+    FormsModule
+  ],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.css'
 })
 export class TaskCardComponent {
+  @ViewChild('checkSection', { static: false }) checkSection!: ElementRef<HTMLElement>;
+  isCompleted: boolean = false;
+  
+  onMouseHover() {
+    if(this.checkSection){
+      this.displayCheckbox();
+    }
+  }
 
+  onMouseLeave() {
+    if(this.checkSection && !this.isCompleted){
+      this.hideCheckbox();
+    }
+  }
+
+  onCompleted() {
+    if(!this.isCompleted){
+      this.hideCheckbox();
+      this.isCompleted = false;
+    } else {
+      this.displayCheckbox();
+      this.isCompleted = true;
+    }
+  }
+
+  hideCheckbox() {
+    this.checkSection.nativeElement.style.display = "none";
+    this.checkSection.nativeElement.style.width = "0%";
+  }
+
+  displayCheckbox() {
+    this.checkSection.nativeElement.style.display = "block";
+    this.checkSection.nativeElement.style.width = "15%";
+  }
 }

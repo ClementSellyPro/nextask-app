@@ -13,21 +13,10 @@
   border-radius: var(--border-radius-column);
   height: fit-content;
   width: 260px;
-  padding: 4px 0;
+  padding: 14px 0;
 }
 
 .add-column-button:hover {
   cursor: pointer;
   filter: brightness(0.95);
-}
-
-.add-column-button-text {
-  display: flex;
-  align-items: center;
-  gap: 8px
-}
-
-.add-column-plus {
-  font-size: 32px;
-  font-weight: 200;
 }
