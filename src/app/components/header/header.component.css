@@ -7,6 +7,11 @@ header {
   background-color: var(--bg-color);
 }
 
+.header-shadow {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
 .logo:hover {
   cursor: pointer;
   opacity: 0.9;
@@ -16,6 +21,11 @@ header {
   display: flex;
   align-items: center;
   gap: 12px;
+}
+
+.user-icon:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 /* all buttons {
