@@ -1,26 +1,36 @@
-<div class='auth-container'>
-  <h1 class='auth-title'>{{ isLoginMode ? 
-    'Connectez vous pour continuer' : 
-    'Créer un compte pour continuer' }}
+<div class="auth-container">
+  <h1 class="auth-title">
+    {{
+      isLoginMode
+        ? "Connectez vous pour continuer"
+        : "Créer un compte pour continuer"
+    }}
   </h1>
   <form>
-    <div class='input-group'>
+    <div class="input-group">
       <label>Nom d'utilisateur:</label>
-      <input type='text' name='name' [(ngModel)]="name" />
+      <input type="text" name="name" [(ngModel)]="name" />
     </div>
-    <div class='input-group'>
+    <div class="input-group">
       <label>Mot de passe:</label>
-      <input type='text' name='password' [(ngModel)]="password" />
+      <input type="text" name="password" [(ngModel)]="password" />
     </div>
 
-    <button class='button-primary button-create-account' (click)="isLoginMode ? onSubmitLogin() : onSubmitSignup()">
-      {{ isLoginMode ? 'Se connecter' : 'Créer un compte' }}
+    <button
+      class="button-primary button-create-account"
+      (click)="isLoginMode ? onSubmitLogin() : onSubmitSignup()"
+    >
+      {{ isLoginMode ? "Se connecter" : "Créer un compte" }}
     </button>
   </form>
-  <div class='auth-bottom'>
-    <p>{{ isLoginMode ? 'Vous n\'avez pas de compte' : 'Vous avez déja un compte?' }}</p>
+  <div class="auth-bottom">
+    <p>
+      {{
+        isLoginMode ? "Vous n'avez pas de compte" : "Vous avez déja un compte?"
+      }}
+    </p>
     <h2 [routerLink]="isLoginMode ? '/auth/signup' : '/auth/login'">
-      {{ isLoginMode ? 'Créer un compte' : 'Se connecter' }}
+      {{ isLoginMode ? "Créer un compte" : "Se connecter" }}
     </h2>
   </div>
 </div>

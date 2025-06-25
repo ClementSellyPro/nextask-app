@@ -6,18 +6,19 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 export const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
   },
   {
     path: 'auth/:mode',
-    component: AuthComponent
+    component: AuthComponent,
   },
   {
     path: 'auth',
-    redirectTo: 'auth/login', pathMatch:'full'
+    redirectTo: 'auth/login',
+    pathMatch: 'full',
   },
   {
     path: 'dashboard',
-    component: DashboardComponent
-  }
+    component: DashboardComponent,
+  },
 ];

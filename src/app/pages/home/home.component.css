@@ -9,8 +9,10 @@
   height: calc(100vh - 100px);
   overflow: hidden;
   background: radial-gradient(
-    circle at 50% -500%,rgba(43, 153, 250, 1) 0%, 
-    rgba(43, 153, 250, 0) 100%);
+    circle at 50% -500%,
+    rgba(43, 153, 250, 1) 0%,
+    rgba(43, 153, 250, 0) 100%
+  );
 }
 
 .home-title {
@@ -30,9 +32,9 @@
   padding: 10px 120px;
 }
 
-.demo-img { 
+.demo-img {
   position: absolute;
-  bottom : -180px;
+  bottom: -180px;
 }
 
 @media (max-width: 1199px) {
@@ -46,7 +48,7 @@
     font-size: 64px;
     font-weight: 800;
   }
-  
+
   .home-slogan {
     width: 60%;
   }
@@ -63,12 +65,12 @@
     font-size: 52px;
     font-weight: 600;
   }
-  
+
   .home-slogan {
     font-size: 24px;
     width: 75%;
   }
-  
+
   .button-je-me-lance {
     font-size: 14px;
     font-weight: 600;

@@ -5,18 +5,60 @@
   padding: 24px 62px;
 }
 
-.add-column-button {
+.add-column-button,
+.adding-column-button {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--bg-element);
   border-radius: var(--border-radius-column);
   height: fit-content;
-  width: 260px;
+  min-width: 260px;
   padding: 14px 0;
 }
 
 .add-column-button:hover {
   cursor: pointer;
   filter: brightness(0.95);
+}
+
+.adding-column-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 90%;
+}
+
+.adding-column-input {
+  border: 1px solid var(--border-element);
+  border-radius: var(--border-radius-button);
+  padding: 8px 14px;
+  width: 100%;
+}
+
+.adding-column-input:focus {
+  outline: none;
+  border: 1px solid var(--primary-color);
+}
+
+.adding-column-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.adding-column-add {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 14px;
+  min-width: 80px;
+  padding: 8px 18px;
+}
+
+.adding-column-close {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 40px;
+  max-height: 40px;
+  padding: 0;
 }

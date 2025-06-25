@@ -1,34 +1,46 @@
-<div class='card-container' (mouseenter)="onMouseHover()" (mouseleave)="onMouseLeave()">
-  <div class='card-tags'>
-    <p class='card-tag-item'>Frontend</p>
-    <p class='card-tag-item'>Sprint 1</p>
+<div
+  class="card-container"
+  (mouseenter)="onMouseHover()"
+  (mouseleave)="onMouseLeave()"
+>
+  <div class="card-tags">
+    <p class="card-tag-item">Frontend</p>
+    <p class="card-tag-item">Sprint 1</p>
   </div>
 
-  <div class='card-content'>
-    <div #checkSection class='card-content-check'>
+  <div class="card-content">
+    <div #checkSection class="card-content-check">
       <!-- <input type='checkbox' /> -->
       <label class="custom-checkbox">
-        <input type="checkbox" (change)="onCompleted()" [(ngModel)]='isCompleted'>
+        <input
+          type="checkbox"
+          (change)="onCompleted()"
+          [(ngModel)]="isCompleted"
+        />
         <span class="checkmark"></span>
       </label>
     </div>
 
-    <div class='card-content-text'>
-      <h3 class='card-content-title'>Feature Alpha</h3>
-      <p  class='card-content-description'>
-        Little description of the backlog, here is what to do.
-        This is what the dev team have to do until the...
+    <div class="card-content-text">
+      <h3 class="card-content-title">Feature Alpha</h3>
+      <p class="card-content-description">
+        Little description of the backlog, here is what to do. This is what the
+        dev team...
       </p>
     </div>
   </div>
 
-  <div class='card-details'>
-    <div class='card-details-time'>
-      <img class='card-details-time-icon' src='assets/clock.svg' alt='Horloge' />
+  <div class="card-details">
+    <div class="card-details-time">
+      <img
+        class="card-details-time-icon"
+        src="assets/clock.svg"
+        alt="Horloge"
+      />
       <p>3 decembre 2025</p>
     </div>
     <div>
-      <p>Story point <span class='card-details-story-point'>5</span></p>
+      <p>Story point <span class="card-details-story-point">5</span></p>
     </div>
   </div>
 </div>

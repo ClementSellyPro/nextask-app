@@ -5,7 +5,7 @@
   align-items: center;
   gap: 42px;
   height: calc(100vh - 100px);
-  background: url('/assets/auth-img.png') no-repeat;
+  background: url("/assets/auth-img.png") no-repeat;
   background-position: bottom 50px right 30px;
   background-size: 350px 340px;
 }
@@ -47,7 +47,7 @@ input:focus {
   border: 2px solid var(--primary-color);
 }
 
-.button-create-account{
+.button-create-account {
   margin-top: 32px;
 }
 
@@ -110,8 +110,8 @@ input:focus {
     width: 85%;
     min-width: 320px;
   }
-  
-  .button-create-account{
+
+  .button-create-account {
     font-size: 18px;
     margin-top: 24px;
   }

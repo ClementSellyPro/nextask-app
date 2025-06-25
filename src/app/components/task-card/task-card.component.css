@@ -65,8 +65,8 @@
 
 /* État checked */
 .custom-checkbox input:checked + .checkmark {
-  background-color: #4CAF50;
-  border-color: #4CAF50;
+  background-color: #4caf50;
+  border-color: #4caf50;
 }
 
 /* Icône (checkmark) */
@@ -120,7 +120,6 @@
 .card-details-time-icon {
   width: 10px;
 }
-
 
 .card-details-story-point {
   font-weight: 700;

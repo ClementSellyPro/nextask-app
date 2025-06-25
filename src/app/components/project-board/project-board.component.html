@@ -1,9 +1,25 @@
-<div class='project-board-container'>
+<div class="project-board-container">
   <app-task-column />
   <app-task-column />
   <app-task-column />
 
-  <div class='add-column-button'>
-    <p class='add-column-button-text'> + Ajouter une colonne </p>
+  @if (!isAddNewColumn) {
+  <div class="add-column-button" (click)="onClickNewColumn()">
+    <p class="add-column-button-text">+ Ajouter une colonne</p>
   </div>
+  } @else {
+  <div class="adding-column-button">
+    <div class="adding-column-container">
+      <input type="text" class="adding-column-input" />
+      <div class="adding-column-buttons">
+        <button class="adding-column-add" (click)="onAddNewColumn()">
+          Ajouter la colonne
+        </button>
+        <button class="adding-column-close" (click)="onCloseNewColumn()">
+          <img src="assets/close.svg" alt="Fermer" />
+        </button>
+      </div>
+    </div>
+  </div>
+  }
 </div>

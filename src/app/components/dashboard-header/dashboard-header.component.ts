@@ -3,11 +3,9 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-header',
-  imports: [
-    NgIf
-  ],
+  imports: [NgIf],
   templateUrl: './dashboard-header.component.html',
-  styleUrl: './dashboard-header.component.css'
+  styleUrl: './dashboard-header.component.css',
 })
 export class DashboardHeaderComponent {
   isModalOpen: boolean = false;
