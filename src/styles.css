@@ -1,30 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Major+Mono+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Major+Mono+Display&display=swap");
 
 :root {
-  --primary-color: #2B99FA;
+  --primary-color: #2b99fa;
   --primary-color-hover: #d6ecff;
-  --text-color: #29293A;
-  --text-color-light: #6A6F7A;
+  --text-color: #29293a;
+  --text-color-light: #6a6f7a;
   --border-radius-button: 8px;
   --bg-color: #f8fdfe;
-  --bg-element: #F1F4F7;
+  --bg-element: #f1f4f7;
   --bg-card: #ffffff;
-  --border-element: #DAE0EC;
+  --border-element: #dae0ec;
 
   --border-radius: 10px;
   --border-radius-column: 15px;
 
-  --red-color: #DA2C38;
-  --pink-color: #DE5073;
-  --orange-color: #FF8600;
-  --yellow-color: #FFD500;
-  --green-color: #7CB518;
-  --blue-color: #2B99FA;
-  --purple-color: #758BFD;
-  --dark-purple-color: #27187E;
+  --red-color: #da2c38;
+  --pink-color: #de5073;
+  --orange-color: #ff8600;
+  --yellow-color: #ffd500;
+  --green-color: #7cb518;
+  --blue-color: #2b99fa;
+  --purple-color: #758bfd;
+  --dark-purple-color: #27187e;
 }
-
 
 * {
   margin: 0;
@@ -33,9 +32,9 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   letter-spacing: -5%;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 button {
@@ -44,7 +43,7 @@ button {
   min-width: 180px;
   font-weight: 500;
   font-size: 18px;
-  border-radius: var(--border-radius-button)
+  border-radius: var(--border-radius-button);
 }
 
 .button-secondary {
@@ -73,7 +72,7 @@ button:hover {
     min-width: 100px;
     font-weight: 500;
     font-size: 12px;
-    border-radius: var(--border-radius-button)
+    border-radius: var(--border-radius-button);
   }
 
   .button-secondary {
