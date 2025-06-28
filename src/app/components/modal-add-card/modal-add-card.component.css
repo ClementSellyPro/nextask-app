@@ -28,6 +28,7 @@
   border: 1px solid var(--border-element);
   border-radius: 5px;
   width: 200px;
+  margin-bottom: 14px;
 }
 
 .modal-details-section {
@@ -72,12 +73,12 @@
   justify-content: space-between;
   align-items: flex-start;
   width: fit-content;
-  gap: 14px;
+  gap: 4px;
 }
 
 /* =============== Date PART =============== */
 .modal-group-date {
-  width: 60%;
+  width: 50%;
 }
 
 .modal-group-date {
@@ -103,12 +104,13 @@
 
 /* =============== Story point PART =============== */
 .modal-group-story {
-  width: 40%;
+  width: 100px;
 }
 
 .modal-story-input {
   width: fit-content;
   padding: 6px 8px;
+  cursor: pointer;
 }
 
 /* =============== Description/buttons PART =============== */
@@ -149,4 +151,37 @@
 .modal-date-input:focus {
   outline: none;
   border: 1px solid var(--primary-color);
+}
+
+/* Personnalisation du calendrier PrimeNG */
+
+::ng-deep .p-datepicker-calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  padding: 14px 8px;
+  border: 1px solid var(--border-element);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+::ng-deep .p-datepicker-panel,
+::ng-deep #pn_id_1_panel,
+::ng-deep #pn_id_2_panel,
+::ng-deep #pn_id_3_panel {
+  position: absolute;
+  left: -300px;
+}
+
+::ng-deep #icondisplay {
+  cursor: pointer;
+  padding: 5px 8px;
+  border-radius: 5px;
+  background-color: white;
+  border: 1px solid var(--border-element);
+}
+
+::ng-deep .p-datepicker-header {
+  border-bottom: 1px solid var(--border-element);
 }

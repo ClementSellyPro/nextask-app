@@ -1,50 +1,90 @@
-<div class="modal-overlay">
-  <div class="modal-container">
-    <input class="modal-title-input" type="text" placeholder="Titre" />
-    <div class="modal-details-section">
-      <div class="modal-group">
-        <label>Etiquettes</label>
-        <div class="modal-tags">
-          <p class="modal-tag">Frontend</p>
-          <p class="modal-tag">Sprint 1</p>
-          <button class="modal-add-tag-button">+</button>
-        </div>
-      </div>
-
-      <div class="modal-details-right">
-        <div class="modal-group modal-group-date">
-          <label>Date Limite</label>
-          <div class="date-group">
-            <input class="modal-date-input" matInput placeholder="JJ/MM/AAAA" />
+<div class="modal-overlay" (click)="onCloseModal()">
+  <div class="modal-container" (click)="$event.stopImmediatePropagation()">
+    <form [formGroup]="cardForm">
+      <input
+        class="modal-title-input"
+        type="text"
+        placeholder="Titre"
+        formControlName="title"
+      />
+      <div class="modal-details-section">
+        <div class="modal-group">
+          <label>Etiquettes</label>
+          <div class="modal-tags">
+            <p class="modal-tag">Frontend</p>
+            <p class="modal-tag">Sprint 1</p>
+            <button type="button" class="modal-add-tag-button">+</button>
           </div>
         </div>
 
-        <div class="modal-group modal-group-story">
-          <label>Story Points</label>
-          <select
-            class="modal-story-input"
-            name="story-point"
-            id="story-point-select"
-          >
-            <option value="">--</option>
-            <option value="1">1</option>
-            <option value="3">3</option>
-            <option value="5">5</option>
-            <option value="8">8</option>
-            <option value="13">13</option>
-          </select>
+        <div class="modal-details-right">
+          <div class="modal-group modal-group-date">
+            <label>Date Limite</label>
+            <div class="date-group">
+              <!-- <p-calendar
+                inputId="limitDate"
+                formControlName="limitDate"
+                dateFormat="dd/mm/yy"
+                [showIcon]="true"
+                [style]="{ width: '50%' }"
+                placeholder="JJ/MM/AAAA"
+                yearRange="2020:2030"
+                styleClass="modal-date-input"
+              >
+                >
+              </p-calendar> -->
+              <p-datepicker
+                formControlName="limitDate"
+                dateFormat="dd.mm.yy"
+                [iconDisplay]="'input'"
+                inputId="icondisplay"
+              />
+            </div>
+          </div>
+
+          <div class="modal-group modal-group-story">
+            <label>Story Points</label>
+            <select
+              class="modal-story-input"
+              name="story-point"
+              id="story-point-select"
+              formControlName="storyPoints"
+            >
+              <option value="">--</option>
+              <option value="1">1</option>
+              <option value="3">3</option>
+              <option value="5">5</option>
+              <option value="8">8</option>
+              <option value="13">13</option>
+            </select>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="modal-description-section">
-      <label>Description</label>
-      <textarea class="modal-description-input"></textarea>
+      <div class="modal-description-section">
+        <label>Description</label>
+        <textarea
+          class="modal-description-input"
+          formControlName="description"
+        ></textarea>
 
-      <div class="modal-buttons">
-        <button class="button-secondary modal-button">Annuler</button>
-        <button class="button-primary modal-button">Enregistrer</button>
+        <div class="modal-buttons">
+          <button
+            type="button"
+            class="button-secondary modal-button"
+            (click)="onCancel()"
+          >
+            Annuler
+          </button>
+          <button
+            type="button"
+            class="button-primary modal-button"
+            (click)="onSave()"
+          >
+            Enregistrer
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>

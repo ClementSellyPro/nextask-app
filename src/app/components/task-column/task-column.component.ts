@@ -10,5 +10,13 @@ import { NgIf } from '@angular/common';
   styleUrl: './task-column.component.css',
 })
 export class TaskColumnComponent {
-  isModalTaskOpen: boolean = true;
+  isModalTaskOpen: boolean = false;
+
+  onOpenModal() {
+    this.isModalTaskOpen = true;
+  }
+
+  onCloseModal() {
+    this.isModalTaskOpen = false;
+  }
 }

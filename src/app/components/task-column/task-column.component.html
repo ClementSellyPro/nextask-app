@@ -7,9 +7,9 @@
     <app-task-card />
     <app-task-card />
     <div class="add-task-button">
-      <p class="">+ Ajouter une carte</p>
+      <p class="" (click)="onOpenModal()">+ Ajouter une carte</p>
     </div>
   </div>
 
-  <app-modal-add-card *ngIf="isModalTaskOpen" />
+  <app-modal-add-card *ngIf="isModalTaskOpen" (closeModal)="onCloseModal()" />
 </div>
