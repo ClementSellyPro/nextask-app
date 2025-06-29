@@ -10,7 +10,7 @@
     <button class="button-primary" routerLink="auth/signup">
       Créer un compte
     </button>
-    } @if(currentUrl === '/dashboard') {
+    } @if(currentUrl.startsWith('/dashboard')) {
     <div class="user-icon">
       <img src="assets/user.svg" alt="Photo utilisateur" />
     </div>

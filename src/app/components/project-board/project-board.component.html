@@ -7,8 +7,14 @@
   </div>
   } @else {
   <div class="adding-column-button">
-    <div class="adding-column-container">
-      <input type="text" class="adding-column-input" />
+    <form class="adding-column-container">
+      <input
+        type="text"
+        class="adding-column-input"
+        name="title"
+        [(ngModel)]="title"
+      />
+      <p-colorpicker [(ngModel)]="color" name="color" />
       <div class="adding-column-buttons">
         <button class="adding-column-add" (click)="onAddNewColumn()">
           Ajouter la colonne
@@ -17,7 +23,7 @@
           <img src="assets/close.svg" alt="Fermer" />
         </button>
       </div>
-    </div>
+    </form>
   </div>
   }
 </div>
