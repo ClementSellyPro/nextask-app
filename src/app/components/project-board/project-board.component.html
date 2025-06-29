@@ -1,6 +1,9 @@
 <div class="project-board-container">
+  @for (column of (taskColumns$ | async); track $index) {
   <app-task-column />
+  }
 
+  <!-- conditional display, if adding a new column -->
   @if (!isAddNewColumn) {
   <div class="add-column-button" (click)="onClickNewColumn()">
     <p class="add-column-button-text">+ Ajouter une colonne</p>

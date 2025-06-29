@@ -54,11 +54,6 @@
   padding: 8px 18px;
 }
 
-p-colorpicker-preview {
-  border-radius: 5px;
-  height: 25px;
-}
-
 .adding-column-close {
   display: flex;
   justify-content: center;
