@@ -1,9 +1,11 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CardType } from '../../models/Card.model';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-card',
-  imports: [FormsModule],
+  imports: [FormsModule, DatePipe],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.css',
 })
@@ -11,6 +13,7 @@ export class TaskCardComponent {
   @ViewChild('checkSection', { static: false })
   checkSection!: ElementRef<HTMLElement>;
   isCompleted: boolean = false;
+  @Input() cardData!: CardType;
 
   onMouseHover() {
     if (this.checkSection) {

@@ -4,13 +4,17 @@
   (mouseleave)="onMouseLeave()"
 >
   <div class="card-tags">
-    <p class="card-tag-item">Frontend</p>
-    <p class="card-tag-item">Sprint 1</p>
+    <!-- <p class="card-tag-item">Frontend</p>
+    <p class="card-tag-item">Sprint 1</p> -->
+    @for (tag of cardData.tags; track $index) {
+    <p class="card-tag-item" [style.borderColor]="tag.color">
+      {{ tag.name }}
+    </p>
+    }
   </div>
 
   <div class="card-content">
     <div #checkSection class="card-content-check">
-      <!-- <input type='checkbox' /> -->
       <label class="custom-checkbox">
         <input
           type="checkbox"
@@ -22,10 +26,9 @@
     </div>
 
     <div class="card-content-text">
-      <h3 class="card-content-title">Feature Alpha</h3>
+      <h3 class="card-content-title">{{ cardData.title }}</h3>
       <p class="card-content-description">
-        Little description of the backlog, here is what to do. This is what the
-        dev team...
+        {{ cardData.description }}
       </p>
     </div>
   </div>
@@ -37,10 +40,13 @@
         src="assets/clock.svg"
         alt="Horloge"
       />
-      <p>3 decembre 2025</p>
+      <p>{{ cardData.limitDate | date : "d MMMM, y" }}</p>
     </div>
     <div>
-      <p>Story point <span class="card-details-story-point">5</span></p>
+      <p>
+        Story point
+        <span class="card-details-story-point">{{ cardData.storyPoints }}</span>
+      </p>
     </div>
   </div>
 </div>

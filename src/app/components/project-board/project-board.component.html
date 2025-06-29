@@ -1,6 +1,6 @@
 <div class="project-board-container">
-  @for (column of (taskColumns$ | async); track $index) {
-  <app-task-column />
+  @for (columnData of (taskColumns$ | async); track $index) {
+  <app-task-column [columnData]="columnData" />
   }
 
   <!-- conditional display, if adding a new column -->

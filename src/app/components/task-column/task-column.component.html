@@ -1,11 +1,14 @@
 <div class="task-column-container">
   <div class="task-column-header">
-    <p class="task-column-title">A Faire</p>
+    <p class="task-column-title" [style.background-color]="columnData.color">
+      {{ columnData.name }}
+    </p>
     <img class="column-option-button" src="assets/option.svg" alt="Option" />
   </div>
   <div class="tasks-container">
-    <app-task-card />
-    <app-task-card />
+    @for (cardData of columnData.cards; track $index) {
+    <app-task-card [cardData]="cardData" />
+    }
     <div class="add-task-button">
       <p class="" (click)="onOpenModal()">+ Ajouter une carte</p>
     </div>
