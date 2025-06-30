@@ -4,8 +4,6 @@
   (mouseleave)="onMouseLeave()"
 >
   <div class="card-tags">
-    <!-- <p class="card-tag-item">Frontend</p>
-    <p class="card-tag-item">Sprint 1</p> -->
     @for (tag of cardData.tags; track $index) {
     <p class="card-tag-item" [style.borderColor]="tag.color">
       {{ tag.name }}

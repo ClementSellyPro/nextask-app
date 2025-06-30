@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { TaskColumType } from '../models/TaskColumn.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskColumnsService {
+  uuid: string = uuidv4();
+
   taskColumns: BehaviorSubject<TaskColumType[]> = new BehaviorSubject<
     TaskColumType[]
   >([]);
@@ -14,10 +17,12 @@ export class TaskColumnsService {
   constructor() {
     this.taskColumns.next([
       {
+        id: 'asdhfjk',
         name: 'A Faire',
         color: '#007bff',
         cards: [
           {
+            id: 'asdhfjkqwe',
             title: 'Créer la maquette',
             description: 'Réaliser la maquette initiale de l’application.',
             limitDate: new Date('2025-07-15'),
@@ -28,6 +33,7 @@ export class TaskColumnsService {
             ],
           },
           {
+            id: 'asdhfjkqw',
             title: 'Configurer l’authentification',
             description: 'Mettre en place l’authentification via JWT.',
             limitDate: new Date('2025-07-20'),
@@ -40,10 +46,12 @@ export class TaskColumnsService {
         ],
       },
       {
+        id: 'asdhfjkre',
         name: 'En cours',
         color: '#28a745',
         cards: [
           {
+            id: 'asdhfjkawe',
             title: 'Implémenter le drag & drop',
             description:
               'Permettre le déplacement des cartes entre les colonnes.',
@@ -57,10 +65,12 @@ export class TaskColumnsService {
         ],
       },
       {
+        id: 'asdhfjkfd',
         name: 'Terminées',
         color: '#6c757d',
         cards: [
           {
+            id: 'asdhfjkqae',
             title: 'Initialiser le projet Angular',
             description: 'Créer la structure de base du projet.',
             limitDate: new Date('2025-06-01'),
@@ -74,5 +84,18 @@ export class TaskColumnsService {
 
   getData() {
     return this.taskColumns;
+  }
+
+  addNewColumn(name: string, color: string) {
+    const newColumn: TaskColumType = {
+      id: uuidv4(),
+      name: name,
+      color: color,
+      cards: [],
+    };
+
+    const updatedColumnList = [...this.taskColumns.getValue(), newColumn];
+
+    this.taskColumns.next(updatedColumnList);
   }
 }

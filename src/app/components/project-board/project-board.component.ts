@@ -34,6 +34,7 @@ export class ProjectBoardComponent implements OnInit {
   }
 
   onAddNewColumn() {
+    this.taskColumnsService.addNewColumn(this.title, this.color);
     this.isAddNewColumn = false;
   }
 }
