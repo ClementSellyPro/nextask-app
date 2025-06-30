@@ -21,18 +21,6 @@
           <div class="modal-group modal-group-date">
             <label>Date Limite</label>
             <div class="date-group">
-              <!-- <p-calendar
-                inputId="limitDate"
-                formControlName="limitDate"
-                dateFormat="dd/mm/yy"
-                [showIcon]="true"
-                [style]="{ width: '50%' }"
-                placeholder="JJ/MM/AAAA"
-                yearRange="2020:2030"
-                styleClass="modal-date-input"
-              >
-                >
-              </p-calendar> -->
               <p-datepicker
                 formControlName="limitDate"
                 dateFormat="dd.mm.yy"
@@ -79,7 +67,7 @@
           <button
             type="button"
             class="button-primary modal-button"
-            (click)="onSave()"
+            (click)="onAddNewCard()"
           >
             Enregistrer
           </button>

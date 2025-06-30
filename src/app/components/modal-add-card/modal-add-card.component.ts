@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -11,6 +11,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
+import { TaskColumnsService } from '../../services/task-columns.service';
+import { CardType } from '../../models/Card.model';
+import { TaskColumType } from '../../models/TaskColumn.model';
 
 @Component({
   selector: 'app-modal-add-card',
@@ -29,6 +32,7 @@ import { CalendarModule } from 'primeng/calendar';
 })
 export class ModalAddCardComponent {
   @Output() closeModal = new EventEmitter<void>();
+  @Input() columnID!: string;
 
   cardForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -36,6 +40,8 @@ export class ModalAddCardComponent {
     storyPoints: new FormControl(''),
     description: new FormControl(''),
   });
+
+  constructor(private taskColumnsService: TaskColumnsService) {}
 
   onDateLimitSelection() {
     console.log(this.cardForm.value.limitDate);
@@ -49,11 +55,20 @@ export class ModalAddCardComponent {
     this.closeModal.emit();
   }
 
-  onSave() {
+  onAddNewCard() {
     if (this.cardForm.valid) {
       const formData = this.cardForm.value;
       console.log('Données du formulaire:', formData);
+      const newCard: CardType = {
+        id: '',
+        title: formData.title!,
+        description: formData.description!,
+        tags: [],
+        limitDate: formData.limitDate!,
+        storyPoints: formData.storyPoints!,
+      };
 
+      this.taskColumnsService.addNewCard(newCard, this.columnID);
       this.closeModal.emit();
     } else {
       this.cardForm.markAllAsTouched();

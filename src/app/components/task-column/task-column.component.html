@@ -14,5 +14,9 @@
     </div>
   </div>
 
-  <app-modal-add-card *ngIf="isModalTaskOpen" (closeModal)="onCloseModal()" />
+  <app-modal-add-card
+    *ngIf="isModalTaskOpen"
+    [columnID]="columnData.id"
+    (closeModal)="onCloseModal()"
+  />
 </div>

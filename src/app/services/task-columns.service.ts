@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TaskColumType } from '../models/TaskColumn.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
+import { CardType } from '../models/Card.model';
 
 @Injectable({
   providedIn: 'root',
@@ -93,9 +94,28 @@ export class TaskColumnsService {
       color: color,
       cards: [],
     };
-
     const updatedColumnList = [...this.taskColumns.getValue(), newColumn];
 
     this.taskColumns.next(updatedColumnList);
+  }
+
+  addNewCard(card: CardType, columnID: string) {
+    const newCard: CardType = {
+      ...card,
+      id: uuidv4(),
+    };
+
+    const currentColumns: TaskColumType[] = this.taskColumns.getValue();
+    const updatedColumns: TaskColumType[] = currentColumns.map((column) => {
+      if (column.id === columnID) {
+        return {
+          ...column,
+          cards: [...column.cards, newCard],
+        };
+      }
+      return column;
+    });
+
+    this.taskColumns.next(updatedColumns);
   }
 }
