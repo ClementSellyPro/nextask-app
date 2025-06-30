@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
@@ -13,7 +13,9 @@ import {
 import { CalendarModule } from 'primeng/calendar';
 import { TaskColumnsService } from '../../services/task-columns.service';
 import { CardType } from '../../models/Card.model';
-import { TaskColumType } from '../../models/TaskColumn.model';
+import { TagsService } from '../../services/tags.service';
+import { Observable } from 'rxjs';
+import { TagType } from '../../models/Tag.model';
 
 @Component({
   selector: 'app-modal-add-card',
@@ -26,13 +28,17 @@ import { TaskColumType } from '../../models/TaskColumn.model';
     DatePickerModule,
     DialogModule,
     ButtonModule,
+    AsyncPipe,
+    NgIf,
   ],
   templateUrl: './modal-add-card.component.html',
   styleUrl: './modal-add-card.component.css',
 })
-export class ModalAddCardComponent {
+export class ModalAddCardComponent implements OnInit {
   @Output() closeModal = new EventEmitter<void>();
   @Input() columnID!: string;
+  tagsList$!: Observable<TagType[]>;
+  isAddingNewTag: boolean = false;
 
   cardForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -41,7 +47,14 @@ export class ModalAddCardComponent {
     description: new FormControl(''),
   });
 
-  constructor(private taskColumnsService: TaskColumnsService) {}
+  constructor(
+    private taskColumnsService: TaskColumnsService,
+    private tagsService: TagsService
+  ) {}
+
+  ngOnInit(): void {
+    this.tagsList$ = this.tagsService.tagsList$;
+  }
 
   onDateLimitSelection() {
     console.log(this.cardForm.value.limitDate);
@@ -74,4 +87,16 @@ export class ModalAddCardComponent {
       this.cardForm.markAllAsTouched();
     }
   }
+
+  openModalUpdateTag() {
+    this.isAddingNewTag = true;
+  }
+
+  onCloseModalUpdateTag() {
+    this.isAddingNewTag = false;
+  }
+
+  onUpdateSelectedTags(id: string) {}
+
+  onOpenAddNewTagModal() {}
 }

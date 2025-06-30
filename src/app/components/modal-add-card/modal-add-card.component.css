@@ -46,6 +46,7 @@
 
 /* =============== Details left PART =============== */
 .modal-tags {
+  position: relative;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -60,11 +61,71 @@
   border-radius: 8px;
 }
 
+/* modal update tag part */
 .modal-add-tag-button {
   min-width: 35px;
   max-width: 35px;
-  padding: 8px 5px;
+  padding: 5px 5px;
   border: 1px solid var(--border-element);
+}
+
+.modal-update-tag {
+  position: absolute;
+  top: 40px;
+  left: 80px;
+  padding: 8px;
+  background-color: var(--bg-element);
+  border: 1px solid var(--border-element);
+  border-radius: var(--border-radius);
+}
+
+.modal-update-tag-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-update-tag-header img {
+  width: 12px;
+}
+
+.modal-update-tag-title {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.modal-update-tag-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 14px 0;
+}
+
+.modal-update-tag-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 200px;
+}
+
+.modal-update-tag-item .update-tag-item {
+  flex: 1;
+  padding: 2px 8px;
+}
+
+.update-tag-modify-icon {
+  width: 15px;
+}
+.update-tag-modify-icon:hover,
+.modal-update-tag-header img:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.button-add-tag {
+  font-size: 14px;
+  padding: 4px 0;
 }
 
 /* =============== Details RIGHT PART =============== */

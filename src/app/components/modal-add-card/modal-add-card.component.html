@@ -11,12 +11,60 @@
         <div class="modal-group">
           <label>Etiquettes</label>
           <div class="modal-tags">
-            <p class="modal-tag">Frontend</p>
-            <p class="modal-tag">Sprint 1</p>
-            <button type="button" class="modal-add-tag-button">+</button>
+            @for (tag of (tagsList$ | async); track $index) {
+            <p class="modal-tag" [style.borderColor]="tag.color">
+              {{ tag.name }}
+            </p>
+            }
+            <button
+              type="button"
+              class="modal-add-tag-button"
+              (click)="openModalUpdateTag()"
+            >
+              +
+            </button>
+
+            <!-- modal to update selected tags -->
+            <div class="modal-update-tag" *ngIf="isAddingNewTag">
+              <div class="modal-update-tag-header">
+                <h3 class="modal-update-tag-title">Etiquettes</h3>
+                <img
+                  src="assets/close.svg"
+                  alt="Icone fermer"
+                  (click)="onCloseModalUpdateTag()"
+                />
+              </div>
+              <ul class="modal-update-tag-list">
+                @for (tag of (tagsList$ | async); track $index) {
+                <li class="modal-update-tag-item">
+                  <input
+                    type="checkbox"
+                    (click)="onUpdateSelectedTags(tag.id)"
+                  />
+                  <span
+                    class="modal-tag update-tag-item"
+                    [style.borderColor]="tag.color"
+                    >{{ tag.name }}</span
+                  >
+                  <img
+                    class="update-tag-modify-icon"
+                    src="assets/pen.svg"
+                    alt="Icone modifier"
+                  />
+                </li>
+                }
+              </ul>
+              <button
+                class="button-primary button-add-tag"
+                (click)="onOpenAddNewTagModal()"
+              >
+                Ajouter une étiquette
+              </button>
+            </div>
           </div>
         </div>
 
+        <!-- date limit and story points part -->
         <div class="modal-details-right">
           <div class="modal-group modal-group-date">
             <label>Date Limite</label>

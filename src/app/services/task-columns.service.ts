@@ -29,8 +29,8 @@ export class TaskColumnsService {
             limitDate: new Date('2025-07-15'),
             storyPoints: '3',
             tags: [
-              { name: 'Design', color: '#ff5733' },
-              { name: 'Prioritaire', color: '#c70039' },
+              { id: 'fjmjmjsl', name: 'Design', color: '#ff5733' },
+              { id: 'fhyhhjsl', name: 'Prioritaire', color: '#c70039' },
             ],
           },
           {
@@ -40,8 +40,8 @@ export class TaskColumnsService {
             limitDate: new Date('2025-07-20'),
             storyPoints: '5',
             tags: [
-              { name: 'Backend', color: '#900c3f' },
-              { name: 'Sécurité', color: '#581845' },
+              { id: 'fjbvbvsl', name: 'Backend', color: '#900c3f' },
+              { id: 'fjsxcvxl', name: 'Sécurité', color: '#581845' },
             ],
           },
         ],
@@ -59,8 +59,8 @@ export class TaskColumnsService {
             limitDate: new Date('2025-07-10'),
             storyPoints: '8',
             tags: [
-              { name: 'UX', color: '#ffc107' },
-              { name: 'Frontend', color: '#17a2b8' },
+              { id: 'fjslef', name: 'UX', color: '#ffc107' },
+              { id: 'fjslsd', name: 'Frontend', color: '#17a2b8' },
             ],
           },
         ],
@@ -76,7 +76,7 @@ export class TaskColumnsService {
             description: 'Créer la structure de base du projet.',
             limitDate: new Date('2025-06-01'),
             storyPoints: '2',
-            tags: [{ name: 'Setup', color: '#20c997' }],
+            tags: [{ id: 'fjsl', name: 'Setup', color: '#20c997' }],
           },
         ],
       },
