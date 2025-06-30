@@ -25,42 +25,10 @@
             </button>
 
             <!-- modal to update selected tags -->
-            <div class="modal-update-tag" *ngIf="isAddingNewTag">
-              <div class="modal-update-tag-header">
-                <h3 class="modal-update-tag-title">Etiquettes</h3>
-                <img
-                  src="assets/close.svg"
-                  alt="Icone fermer"
-                  (click)="onCloseModalUpdateTag()"
-                />
-              </div>
-              <ul class="modal-update-tag-list">
-                @for (tag of (tagsList$ | async); track $index) {
-                <li class="modal-update-tag-item">
-                  <input
-                    type="checkbox"
-                    (click)="onUpdateSelectedTags(tag.id)"
-                  />
-                  <span
-                    class="modal-tag update-tag-item"
-                    [style.borderColor]="tag.color"
-                    >{{ tag.name }}</span
-                  >
-                  <img
-                    class="update-tag-modify-icon"
-                    src="assets/pen.svg"
-                    alt="Icone modifier"
-                  />
-                </li>
-                }
-              </ul>
-              <button
-                class="button-primary button-add-tag"
-                (click)="onOpenAddNewTagModal()"
-              >
-                Ajouter une étiquette
-              </button>
-            </div>
+            <app-modal-update-tags
+              *ngIf="isAddingNewTag"
+              (closeModalEvent)="closeModalUpdateTag()"
+            />
           </div>
         </div>
 

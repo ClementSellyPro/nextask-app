@@ -16,6 +16,7 @@ import { CardType } from '../../models/Card.model';
 import { TagsService } from '../../services/tags.service';
 import { Observable } from 'rxjs';
 import { TagType } from '../../models/Tag.model';
+import { ModalUpdateTagsComponent } from '../modal-update-tags/modal-update-tags.component';
 
 @Component({
   selector: 'app-modal-add-card',
@@ -30,6 +31,7 @@ import { TagType } from '../../models/Tag.model';
     ButtonModule,
     AsyncPipe,
     NgIf,
+    ModalUpdateTagsComponent,
   ],
   templateUrl: './modal-add-card.component.html',
   styleUrl: './modal-add-card.component.css',
@@ -92,11 +94,7 @@ export class ModalAddCardComponent implements OnInit {
     this.isAddingNewTag = true;
   }
 
-  onCloseModalUpdateTag() {
+  closeModalUpdateTag() {
     this.isAddingNewTag = false;
   }
-
-  onUpdateSelectedTags(id: string) {}
-
-  onOpenAddNewTagModal() {}
 }
