@@ -39,6 +39,7 @@ import { ModalUpdateTagsComponent } from '../modal-update-tags/modal-update-tags
 export class ModalAddCardComponent implements OnInit {
   @Output() closeModal = new EventEmitter<void>();
   @Input() columnID!: string;
+  @Input() cardToUpdate!: CardType;
   tagList$!: Observable<TagType[]>;
   isAddingNewTag: boolean = false;
 
@@ -48,7 +49,7 @@ export class ModalAddCardComponent implements OnInit {
 
   cardForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
-    limitDate: new FormControl(null),
+    limitDate: new FormControl(),
     storyPoints: new FormControl(''),
     description: new FormControl(''),
   });
@@ -60,6 +61,16 @@ export class ModalAddCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.tagList$ = this.tagsService.tagList$;
+    this.selectedTags.next(this.cardToUpdate.tags);
+
+    if (this.cardToUpdate) {
+      this.cardForm.patchValue({
+        title: this.cardToUpdate.title,
+        limitDate: this.cardToUpdate.limitDate,
+        storyPoints: this.cardToUpdate.storyPoints,
+        description: this.cardToUpdate.description,
+      });
+    }
   }
 
   onDateLimitSelection() {

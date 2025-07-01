@@ -2,6 +2,7 @@
   class="card-container"
   (mouseenter)="onMouseHover()"
   (mouseleave)="onMouseLeave()"
+  (click)="onOpenUpdateModal()"
 >
   <div class="card-tags">
     @for (tag of cardData.tags; track $index) {
@@ -47,4 +48,9 @@
       </p>
     </div>
   </div>
+  <app-modal-add-card
+    [cardToUpdate]="cardData"
+    *ngIf="isUpdating"
+    (closeModal)="onCloseUpdateModal()"
+  />
 </div>
