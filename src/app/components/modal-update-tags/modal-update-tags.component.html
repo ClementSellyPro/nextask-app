@@ -1,4 +1,5 @@
 <div class="modal-update-tag">
+  @if (isAddingNewTag === false) {
   <div class="modal-update-tag-header">
     <h3 class="modal-update-tag-title">Etiquettes</h3>
     <img
@@ -8,7 +9,7 @@
     />
   </div>
   <ul class="modal-update-tag-list">
-    @for (tag of (tagsList$ | async); track $index) {
+    @for (tag of (tagList$ | async); track $index) {
     <li class="modal-update-tag-item">
       <input type="checkbox" (click)="onUpdateSelectedTags(tag.id)" />
       <span class="modal-tag update-tag-item" [style.borderColor]="tag.color">{{
@@ -28,4 +29,20 @@
   >
     Ajouter une étiquette
   </button>
+  } @else {
+  <h3 class="modal-update-tag-title">Ajouter nouvelle étiquettes</h3>
+  <form>
+    <div class="form-update-tag-group">
+      <label>Titre</label>
+      <input type="text" name="tag-title" [(ngModel)]="newTagTitle" />
+    </div>
+    <div class="form-update-tag-group">
+      <label>Couleur</label>
+      <p-colorpicker [(ngModel)]="newTagColor" name="color" />
+    </div>
+    <button class="button-primary button-add-new-tag" (click)="onAddNewTag()">
+      Ajouter
+    </button>
+  </form>
+  }
 </div>

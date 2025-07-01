@@ -11,7 +11,7 @@
         <div class="modal-group">
           <label>Etiquettes</label>
           <div class="modal-tags">
-            @for (tag of (tagsList$ | async); track $index) {
+            @for (tag of (tagList$ | async); track $index) {
             <p class="modal-tag" [style.borderColor]="tag.color">
               {{ tag.name }}
             </p>

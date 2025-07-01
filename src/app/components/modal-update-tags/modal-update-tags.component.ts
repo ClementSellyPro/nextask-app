@@ -1,23 +1,29 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TagType } from '../../models/Tag.model';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { TagsService } from '../../services/tags.service';
+import { ColorPickerModule } from 'primeng/colorpicker';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modal-update-tags',
-  imports: [AsyncPipe, NgIf],
+  imports: [AsyncPipe, FormsModule, ColorPickerModule],
   templateUrl: './modal-update-tags.component.html',
   styleUrl: './modal-update-tags.component.css',
 })
 export class ModalUpdateTagsComponent implements OnInit {
   @Output() closeModalEvent = new EventEmitter<boolean>();
-  tagsList$!: Observable<TagType[]>;
+  tagList$!: Observable<TagType[]>;
+  isAddingNewTag: boolean = false;
+
+  newTagTitle!: string;
+  newTagColor!: string;
 
   constructor(private tagsService: TagsService) {}
 
   ngOnInit(): void {
-    this.tagsList$ = this.tagsService.tagsList$;
+    this.tagList$ = this.tagsService.tagList$;
   }
 
   onCloseModalUpdateTag() {
@@ -26,5 +32,17 @@ export class ModalUpdateTagsComponent implements OnInit {
 
   onUpdateSelectedTags(id: string) {}
 
-  onOpenAddNewTagModal() {}
+  onOpenAddNewTagModal() {
+    this.isAddingNewTag = true;
+  }
+
+  onAddNewTag() {
+    const newTag: TagType = {
+      id: '',
+      name: this.newTagTitle,
+      color: this.newTagColor,
+    };
+    this.tagsService.addNewTag(newTag);
+    this.isAddingNewTag = false;
+  }
 }

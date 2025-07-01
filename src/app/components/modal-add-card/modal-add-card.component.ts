@@ -39,7 +39,7 @@ import { ModalUpdateTagsComponent } from '../modal-update-tags/modal-update-tags
 export class ModalAddCardComponent implements OnInit {
   @Output() closeModal = new EventEmitter<void>();
   @Input() columnID!: string;
-  tagsList$!: Observable<TagType[]>;
+  tagList$!: Observable<TagType[]>;
   isAddingNewTag: boolean = false;
 
   cardForm = new FormGroup({
@@ -55,7 +55,7 @@ export class ModalAddCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tagsList$ = this.tagsService.tagsList$;
+    this.tagList$ = this.tagsService.tagList$;
   }
 
   onDateLimitSelection() {
