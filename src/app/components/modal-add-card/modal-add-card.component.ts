@@ -14,7 +14,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { TaskColumnsService } from '../../services/task-columns.service';
 import { CardType } from '../../models/Card.model';
 import { TagsService } from '../../services/tags.service';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TagType } from '../../models/Tag.model';
 import { ModalUpdateTagsComponent } from '../modal-update-tags/modal-update-tags.component';
 
@@ -41,6 +41,10 @@ export class ModalAddCardComponent implements OnInit {
   @Input() columnID!: string;
   tagList$!: Observable<TagType[]>;
   isAddingNewTag: boolean = false;
+
+  // selectedTags: TagType[] = [];
+  selectedTags: BehaviorSubject<TagType[]> = new BehaviorSubject<TagType[]>([]);
+  selectedTags$: Observable<TagType[]> = this.selectedTags.asObservable();
 
   cardForm = new FormGroup({
     title: new FormControl('', [Validators.required]),
@@ -78,7 +82,7 @@ export class ModalAddCardComponent implements OnInit {
         id: '',
         title: formData.title!,
         description: formData.description!,
-        tags: [],
+        tags: this.selectedTags.getValue(),
         limitDate: formData.limitDate!,
         storyPoints: formData.storyPoints!,
       };
@@ -96,5 +100,9 @@ export class ModalAddCardComponent implements OnInit {
 
   closeModalUpdateTag() {
     this.isAddingNewTag = false;
+  }
+
+  updateSelectedTags(tags: TagType[]): void {
+    this.selectedTags.next(tags);
   }
 }

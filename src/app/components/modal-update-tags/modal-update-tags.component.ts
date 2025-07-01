@@ -14,8 +14,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class ModalUpdateTagsComponent implements OnInit {
   @Output() closeModalEvent = new EventEmitter<boolean>();
+  @Output() addedTagsEvent = new EventEmitter<TagType[]>();
   tagList$!: Observable<TagType[]>;
   isAddingNewTag: boolean = false;
+  selectedTags: TagType[] = [];
 
   newTagTitle!: string;
   newTagColor!: string;
@@ -30,7 +32,25 @@ export class ModalUpdateTagsComponent implements OnInit {
     this.closeModalEvent.emit(false);
   }
 
-  onUpdateSelectedTags(id: string) {}
+  onUpdateSelectedTags(clickedID: string) {
+    const selectedTag = this.tagsService.tagList
+      .getValue()
+      .find((tag) => tag.id === clickedID);
+
+    if (this.selectedTags.length === 0) {
+      this.selectedTags.push(selectedTag!);
+    } else {
+      if (!this.selectedTags.some((tag) => tag.id === clickedID)) {
+        this.selectedTags.push(selectedTag!);
+      } else {
+        const itemIndex = this.selectedTags.findIndex(
+          (tag) => tag.id === clickedID
+        );
+        this.selectedTags.splice(itemIndex, 1);
+      }
+    }
+    this.addedTagsEvent.emit(this.selectedTags);
+  }
 
   onOpenAddNewTagModal() {
     this.isAddingNewTag = true;
