@@ -7,7 +7,7 @@
   </div>
   <div class="tasks-container">
     @for (cardData of columnData.cards; track $index) {
-    <app-task-card [cardData]="cardData" />
+    <app-task-card [cardData]="cardData" [columnID]="columnData.id" />
     }
     <div class="add-task-button">
       <p class="" (click)="onOpenModal()">+ Ajouter une carte</p>

@@ -16,6 +16,7 @@ export class TaskCardComponent {
   isCompleted: boolean = false;
   isUpdating: boolean = false;
   @Input() cardData!: CardType;
+  @Input() columnID!: string;
 
   onMouseHover() {
     if (this.checkSection) {

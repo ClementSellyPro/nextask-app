@@ -84,7 +84,9 @@
           <button
             type="button"
             class="button-primary modal-button"
-            (click)="onAddNewCard()"
+            (click)="
+              cardToUpdate ? onUpdateCard(cardToUpdate.id) : onAddNewCard()
+            "
           >
             Enregistrer
           </button>

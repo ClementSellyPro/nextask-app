@@ -118,4 +118,25 @@ export class TaskColumnsService {
 
     this.taskColumns.next(updatedColumns);
   }
+
+  updateCard(card: CardType, columnID: string) {
+    const updatedColumns: TaskColumType[] = this.taskColumns
+      .getValue()
+      .map((currentColumn) => {
+        if (currentColumn.id === columnID) {
+          return {
+            ...currentColumn,
+            cards: currentColumn.cards.map((currentCard) => {
+              if (currentCard.id === card.id) {
+                return { ...card };
+              }
+              return currentCard;
+            }),
+          };
+        }
+        return currentColumn;
+      });
+
+    this.taskColumns.next(updatedColumns);
+  }
 }

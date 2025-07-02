@@ -43,7 +43,6 @@ export class ModalAddCardComponent implements OnInit {
   tagList$!: Observable<TagType[]>;
   isAddingNewTag: boolean = false;
 
-  // selectedTags: TagType[] = [];
   selectedTags: BehaviorSubject<TagType[]> = new BehaviorSubject<TagType[]>([]);
   selectedTags$: Observable<TagType[]> = this.selectedTags.asObservable();
 
@@ -88,7 +87,7 @@ export class ModalAddCardComponent implements OnInit {
   onAddNewCard() {
     if (this.cardForm.valid) {
       const formData = this.cardForm.value;
-      console.log('Données du formulaire:', formData);
+
       const newCard: CardType = {
         id: '',
         title: formData.title!,
@@ -115,5 +114,21 @@ export class ModalAddCardComponent implements OnInit {
 
   updateSelectedTags(tags: TagType[]): void {
     this.selectedTags.next(tags);
+  }
+
+  onUpdateCard(id: string) {
+    const formData = this.cardForm.value;
+
+    const updatedCard: CardType = {
+      id: id,
+      title: formData.title!,
+      description: formData.description!,
+      tags: this.selectedTags.getValue(),
+      limitDate: formData.limitDate!,
+      storyPoints: formData.storyPoints!,
+    };
+
+    this.taskColumnsService.updateCard(updatedCard, this.columnID);
+    this.closeModal.emit();
   }
 }

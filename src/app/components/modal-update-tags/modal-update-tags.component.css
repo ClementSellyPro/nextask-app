@@ -1,7 +1,20 @@
+.modal-overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
 .modal-update-tag {
   position: absolute;
-  top: 40px;
-  left: 80px;
+  top: 360px;
+  left: 500px;
   padding: 8px;
   background-color: var(--bg-element);
   border: 1px solid var(--border-element);
