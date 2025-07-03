@@ -12,7 +12,11 @@
     <ul class="modal-update-tag-list">
       @for (tag of (tagList$ | async); track $index) {
       <li class="modal-update-tag-item">
-        <input type="checkbox" (change)="onUpdateSelectedTags(tag.id)" />
+        <input
+          type="checkbox"
+          (change)="onUpdateSelectedTags(tag.id)"
+          [checked]="selectedTags.includes(tag)"
+        />
         <span
           class="modal-tag update-tag-item"
           [style.borderColor]="tag.color"

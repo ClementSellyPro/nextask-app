@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TagType } from '../../models/Tag.model';
 import { AsyncPipe } from '@angular/common';
@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 export class ModalUpdateTagsComponent implements OnInit {
   @Output() closeModalEvent = new EventEmitter<boolean>();
   @Output() addedTagsEvent = new EventEmitter<TagType[]>();
+  @Input() currentTags!: TagType[];
   tagList$!: Observable<TagType[]>;
   isAddingNewTag: boolean = false;
   selectedTags: TagType[] = [];
@@ -26,6 +27,9 @@ export class ModalUpdateTagsComponent implements OnInit {
 
   ngOnInit(): void {
     this.tagList$ = this.tagsService.tagList$;
+    if (this.currentTags) {
+      this.selectedTags = this.currentTags;
+    }
   }
 
   onCloseModalUpdateTag() {
