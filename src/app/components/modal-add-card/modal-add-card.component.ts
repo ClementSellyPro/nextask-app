@@ -131,4 +131,9 @@ export class ModalAddCardComponent implements OnInit {
     this.taskColumnsService.updateCard(updatedCard, this.columnID);
     this.closeModal.emit();
   }
+
+  ondeleteCard(id: string) {
+    this.taskColumnsService.deleteCard(id, this.columnID);
+    this.closeModal.emit();
+  }
 }

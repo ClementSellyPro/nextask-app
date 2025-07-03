@@ -16,7 +16,7 @@
   flex-direction: column;
   gap: 14px;
   width: 600px;
-  padding: 14px 18px 52px 38px;
+  padding: 14px 18px 52px 18px;
   border-radius: var(--border-radius);
   border: 1px solid var(--border-element);
   background-color: var(--bg-element);
@@ -131,11 +131,23 @@
   gap: 12px;
 }
 
-.modal-button {
+.modal-button,
+.delete-card-button {
   padding: 4px 14px;
   font-size: 14px;
   min-width: fit-content;
   border-radius: 5px;
+}
+
+.delete-card-button {
+  position: absolute;
+  bottom: 14px;
+  left: 18px;
+  border-color: rgb(199, 29, 29);
+}
+
+.delete-card-button:hover {
+  background-color: rgba(199, 29, 29, 0.2);
 }
 
 .modal-title-input,
