@@ -1,0 +1,37 @@
+<div class="dashboard-filter-overlay">
+  <div
+    class="dashboard-filter-modal"
+    (click)="$event.stopImmediatePropagation()"
+  >
+    <div class="filter-section">
+      <p class="filter-category">Etiquettes</p>
+      @for (tag of (tagsList$ | async ); track $index) {
+      <div class="filter-element">
+        <input type="checkbox" />
+        <p class="filter-tag" [style.borderColor]="tag.color">{{ tag.name }}</p>
+      </div>
+      }
+    </div>
+
+    <div class="filter-section">
+      <p class="filter-category">Date limite</p>
+
+      <div class="filter-element">
+        <input type="checkbox" />
+        <p>En retard</p>
+      </div>
+      <div class="filter-element">
+        <input type="checkbox" />
+        <p>Cette semaine</p>
+      </div>
+      <div class="filter-element">
+        <input type="checkbox" />
+        <p>Semaine prochaine</p>
+      </div>
+      <div class="filter-element">
+        <input type="checkbox" />
+        <p>Mois prochain</p>
+      </div>
+    </div>
+  </div>
+</div>
