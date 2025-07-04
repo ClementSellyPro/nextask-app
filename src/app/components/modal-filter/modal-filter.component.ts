@@ -3,6 +3,7 @@ import { TagsService } from '../../services/tags.service';
 import { Observable } from 'rxjs';
 import { TagType } from '../../models/Tag.model';
 import { AsyncPipe } from '@angular/common';
+import { TaskColumnsService } from '../../services/task-columns.service';
 
 @Component({
   selector: 'app-modal-filter',
@@ -14,7 +15,10 @@ export class ModalFilterComponent implements OnInit {
   @Output() closeModalEvent = new EventEmitter<boolean>();
   tagsList$!: Observable<TagType[]>;
 
-  constructor(private tagsService: TagsService) {}
+  constructor(
+    private tagsService: TagsService,
+    private taskColumnsService: TaskColumnsService
+  ) {}
 
   ngOnInit(): void {
     this.tagsList$ = this.tagsService.tagList$;
@@ -22,5 +26,9 @@ export class ModalFilterComponent implements OnInit {
 
   onCloseModal() {
     this.closeModalEvent.emit();
+  }
+
+  updateSelectedFilter(id: string) {
+    this.taskColumnsService.updateSelectedFilters(id);
   }
 }

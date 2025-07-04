@@ -97,4 +97,19 @@ export class TaskColumnsService {
       });
     this.taskColumns.next(updatedColumns);
   }
+
+  updateSelectedFilters(id: string) {
+    if (this.selectedFilters.getValue().length === 0) {
+      this.selectedFilters.next([id]);
+    } else {
+      if (!this.selectedFilters.getValue().includes(id)) {
+        this.selectedFilters.next([...this.selectedFilters.getValue(), id]);
+      } else {
+        const updatedFilters = this.selectedFilters
+          .getValue()
+          .filter((tag) => tag !== id);
+        this.selectedFilters.next(updatedFilters);
+      }
+    }
+  }
 }
