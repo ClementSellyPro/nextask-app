@@ -3,84 +3,27 @@ import { TaskColumType } from '../models/TaskColumn.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { CardType } from '../models/Card.model';
+import { DataService } from './data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskColumnsService {
   uuid: string = uuidv4();
+  selectedFilters: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
+    []
+  );
+  selectedFilters$: Observable<string[]> = this.selectedFilters.asObservable();
 
   taskColumns: BehaviorSubject<TaskColumType[]> = new BehaviorSubject<
     TaskColumType[]
   >([]);
   taskColumns$: Observable<TaskColumType[]> = this.taskColumns.asObservable();
 
-  constructor() {
-    this.taskColumns.next([
-      {
-        id: 'asdhfjk',
-        name: 'A Faire',
-        color: '#007bff',
-        cards: [
-          {
-            id: 'asdhfjkqwe',
-            title: 'Créer la maquette',
-            description: 'Réaliser la maquette initiale de l’application.',
-            limitDate: new Date('2025-07-15'),
-            storyPoints: '3',
-            tags: [
-              { id: 'fjmjmjsl', name: 'Design', color: '#ff5733' },
-              { id: 'fhyhhjsl', name: 'Prioritaire', color: '#c70039' },
-            ],
-          },
-          {
-            id: 'asdhfjkqw',
-            title: 'Configurer l’authentification',
-            description: 'Mettre en place l’authentification via JWT.',
-            limitDate: new Date('2025-07-20'),
-            storyPoints: '5',
-            tags: [
-              { id: 'fjbvbvsl', name: 'Backend', color: '#900c3f' },
-              { id: 'fjsxcvxl', name: 'Sécurité', color: '#581845' },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'asdhfjkre',
-        name: 'En cours',
-        color: '#28a745',
-        cards: [
-          {
-            id: 'asdhfjkawe',
-            title: 'Implémenter le drag & drop',
-            description:
-              'Permettre le déplacement des cartes entre les colonnes.',
-            limitDate: new Date('2025-07-10'),
-            storyPoints: '8',
-            tags: [
-              { id: 'fjslef', name: 'UX', color: '#ffc107' },
-              { id: 'fjslsd', name: 'Frontend', color: '#17a2b8' },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'asdhfjkfd',
-        name: 'Terminées',
-        color: '#6c757d',
-        cards: [
-          {
-            id: 'asdhfjkqae',
-            title: 'Initialiser le projet Angular',
-            description: 'Créer la structure de base du projet.',
-            limitDate: new Date('2025-06-01'),
-            storyPoints: '2',
-            tags: [{ id: 'fjsl', name: 'Setup', color: '#20c997' }],
-          },
-        ],
-      },
-    ]);
+  constructor(private dataService: DataService) {
+    this.dataService.getColumsData().subscribe((data) => {
+      this.taskColumns.next(data);
+    });
   }
 
   getData() {

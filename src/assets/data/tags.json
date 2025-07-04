@@ -1,0 +1,37 @@
+[
+  {
+    "id": "tag-frontend",
+    "name": "Frontend",
+    "color": "#7CB518"
+  },
+  {
+    "id": "tag-backend",
+    "name": "Backend",
+    "color": "#FFD500"
+  },
+  {
+    "id": "tag-design",
+    "name": "Design",
+    "color": "#cf2b2b"
+  },
+  {
+    "id": "tag-devops",
+    "name": "Dev Ops",
+    "color": "#9526eb"
+  },
+  {
+    "id": "tag-ux",
+    "name": "UX",
+    "color": "#ffc107"
+  },
+  {
+    "id": "tag-testing",
+    "name": "Testing",
+    "color": "#9c27b0"
+  },
+  {
+    "id": "tag-documentation",
+    "name": "Documentation",
+    "color": "#00bcd4"
+  }
+]

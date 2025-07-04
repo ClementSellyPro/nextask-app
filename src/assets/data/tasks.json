@@ -1,0 +1,99 @@
+[
+  {
+    "id": "col-1",
+    "name": "A Faire",
+    "color": "#007bff",
+    "cards": [
+      {
+        "id": "card-1",
+        "title": "Créer la maquette",
+        "description": "Réaliser la maquette initiale de l’application.",
+        "limitDate": "2025-07-15T00:00:00Z",
+        "storyPoints": "3",
+        "tags": [
+          { "id": "tag-design", "name": "Design", "color": "#cf2b2b" },
+          { "id": "tag-backend", "name": "Backend", "color": "#FFD500" }
+        ]
+      },
+      {
+        "id": "card-2",
+        "title": "Configurer l’authentification",
+        "description": "Mettre en place l’authentification via JWT.",
+        "limitDate": "2025-07-20T00:00:00Z",
+        "storyPoints": "5",
+        "tags": [
+          { "id": "tag-backend", "name": "Backend", "color": "#FFD500" },
+          { "id": "tag-devops", "name": "Dev Ops", "color": "#9526eb" }
+        ]
+      },
+      {
+        "id": "card-3",
+        "title": "Préparer la documentation technique",
+        "description": "Rédiger la documentation pour les développeurs.",
+        "limitDate": "2025-07-22T00:00:00Z",
+        "storyPoints": "3",
+        "tags": [
+          {
+            "id": "tag-documentation",
+            "name": "Documentation",
+            "color": "#00bcd4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "col-2",
+    "name": "En cours",
+    "color": "#28a745",
+    "cards": [
+      {
+        "id": "card-4",
+        "title": "Implémenter le drag & drop",
+        "description": "Permettre le déplacement des cartes entre les colonnes.",
+        "limitDate": "2025-07-10T00:00:00Z",
+        "storyPoints": "8",
+        "tags": [
+          { "id": "tag-ux", "name": "UX", "color": "#ffc107" },
+          { "id": "tag-frontend", "name": "Frontend", "color": "#7CB518" }
+        ]
+      },
+      {
+        "id": "card-5",
+        "title": "Intégrer les tests unitaires",
+        "description": "Ajouter des tests unitaires avec Jest.",
+        "limitDate": "2025-07-12T00:00:00Z",
+        "storyPoints": "5",
+        "tags": [
+          { "id": "tag-frontend", "name": "Frontend", "color": "#7CB518" },
+          { "id": "tag-testing", "name": "Testing", "color": "#9c27b0" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "col-3",
+    "name": "Terminées",
+    "color": "#6c757d",
+    "cards": [
+      {
+        "id": "card-6",
+        "title": "Initialiser le projet Angular",
+        "description": "Créer la structure de base du projet.",
+        "limitDate": "2025-06-01T00:00:00Z",
+        "storyPoints": "2",
+        "tags": [
+          { "id": "tag-frontend", "name": "Frontend", "color": "#7CB518" }
+        ]
+      },
+      {
+        "id": "card-7",
+        "title": "Mettre en place le pipeline CI/CD",
+        "description": "Configurer les workflows GitHub Actions.",
+        "limitDate": "2025-06-20T00:00:00Z",
+        "storyPoints": "4",
+        "tags": [{ "id": "tag-devops", "name": "Dev Ops", "color": "#9526eb" }]
+      }
+    ]
+  }
+]
