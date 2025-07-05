@@ -11,26 +11,10 @@
         <p class="filter-tag" [style.borderColor]="tag.color">{{ tag.name }}</p>
       </div>
       }
-    </div>
-
-    <div class="filter-section">
-      <p class="filter-category">Date limite</p>
-
-      <div class="filter-element">
-        <input type="checkbox" />
-        <p>En retard</p>
-      </div>
-      <div class="filter-element">
-        <input type="checkbox" />
-        <p>Cette semaine</p>
-      </div>
-      <div class="filter-element">
-        <input type="checkbox" />
-        <p>Semaine prochaine</p>
-      </div>
-      <div class="filter-element">
-        <input type="checkbox" />
-        <p>Mois prochain</p>
+      <div *ngIf="tagsList$ | async as tags" class="no-tags">
+        @if (tags.length === 0) {
+        <p>Pas d'étiquettes à afficher</p>
+        }
       </div>
     </div>
   </div>

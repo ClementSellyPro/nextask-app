@@ -69,4 +69,14 @@ export class ModalUpdateTagsComponent implements OnInit {
     this.tagsService.addNewTag(newTag);
     this.isAddingNewTag = false;
   }
+
+  isTagSelected(tag: TagType) {
+    let isTagSelected = false;
+    this.selectedTags.forEach((currentTag) => {
+      if (currentTag.id === tag.id) {
+        isTagSelected = true;
+      }
+    });
+    return isTagSelected;
+  }
 }

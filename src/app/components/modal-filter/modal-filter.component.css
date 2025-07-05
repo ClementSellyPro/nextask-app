@@ -48,7 +48,13 @@
 .filter-tag {
   background-color: var(--bg-color);
   border-radius: 4px;
-  border: 1px solid var(--orange-color);
+  border: 1px solid transparent;
   width: 100%;
   padding: 5px 10px;
+}
+
+.no-tags {
+  padding-top: 20px;
+  color: var(--text-color);
+  font-size: 14px;
 }

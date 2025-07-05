@@ -15,7 +15,7 @@
         <input
           type="checkbox"
           (change)="onUpdateSelectedTags(tag.id)"
-          [checked]="selectedTags.includes(tag)"
+          [checked]="isTagSelected(tag)"
         />
         <span
           class="modal-tag update-tag-item"

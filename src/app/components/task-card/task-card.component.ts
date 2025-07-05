@@ -24,8 +24,8 @@ export class TaskCardComponent {
   @Input() cardData!: CardType;
   @Input() columnID!: string;
 
-  @HostListener('document: keydown.escape', ['$event'])
-  onEscapeKey(event: KeyboardEvent) {
+  @HostListener('document:keydown.escape', ['$event'])
+  onEscapeKey() {
     if (this.isUpdating) {
       this.isUpdating = false;
     }
