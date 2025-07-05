@@ -2,7 +2,7 @@
   class="card-container"
   (mouseenter)="onMouseHover()"
   (mouseleave)="onMouseLeave()"
-  (click)="onOpenUpdateModal()"
+  (click)="onOpenUpdateModal($event)"
 >
   <div class="card-tags">
     @for (tag of cardData.tags; track $index) {
@@ -16,6 +16,7 @@
     <div #checkSection class="card-content-check">
       <label class="custom-checkbox">
         <input
+          (click)="$event.stopImmediatePropagation()"
           type="checkbox"
           (change)="onCompleted()"
           [(ngModel)]="isCompleted"

@@ -1,4 +1,10 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  ViewChild,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CardType } from '../../models/Card.model';
 import { DatePipe, NgIf } from '@angular/common';
@@ -17,6 +23,13 @@ export class TaskCardComponent {
   isUpdating: boolean = false;
   @Input() cardData!: CardType;
   @Input() columnID!: string;
+
+  @HostListener('document: keydown.escape', ['$event'])
+  onEscapeKey(event: KeyboardEvent) {
+    if (this.isUpdating) {
+      this.isUpdating = false;
+    }
+  }
 
   onMouseHover() {
     if (this.checkSection) {
@@ -50,8 +63,11 @@ export class TaskCardComponent {
     this.checkSection.nativeElement.style.width = '15%';
   }
 
-  onOpenUpdateModal() {
-    this.isUpdating = true;
+  onOpenUpdateModal(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.classList.contains('checkmark')) {
+      this.isUpdating = true;
+    }
   }
 
   onCloseUpdateModal() {
