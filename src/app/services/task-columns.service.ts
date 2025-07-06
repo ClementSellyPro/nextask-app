@@ -10,6 +10,7 @@ import { DataService } from './data.service';
 })
 export class TaskColumnsService {
   uuid: string = uuidv4();
+  allData!: TaskColumType[];
   selectedFilters: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
     []
   );
@@ -22,6 +23,7 @@ export class TaskColumnsService {
 
   constructor(private dataService: DataService) {
     this.dataService.getColumsData().subscribe((data) => {
+      this.allData = data;
       this.taskColumns.next(data);
     });
   }
@@ -111,6 +113,30 @@ export class TaskColumnsService {
         this.selectedFilters.next(updatedFilters);
       }
     }
-    console.log(this.selectedFilters.getValue());
+    this.sortData();
+  }
+
+  sortData() {
+    if (this.selectedFilters.getValue().length === 0) {
+      this.taskColumns.next(this.allData);
+    } else {
+      this.taskColumns.next(this.allData);
+      const sortedTaskColumns = this.taskColumns.getValue().map((column) => {
+        return {
+          ...column,
+          cards: column.cards.filter((card) => {
+            const tags = card.tags;
+
+            for (let i = 0; i < tags.length; i++) {
+              if (this.selectedFilters.getValue().includes(tags[i].id)) {
+                return true;
+              }
+            }
+            return false;
+          }),
+        };
+      });
+      this.taskColumns.next(sortedTaskColumns);
+    }
   }
 }
