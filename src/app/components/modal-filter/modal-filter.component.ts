@@ -14,6 +14,7 @@ import { TaskColumnsService } from '../../services/task-columns.service';
 export class ModalFilterComponent implements OnInit {
   @Output() closeModalEvent = new EventEmitter<boolean>();
   tagsList$!: Observable<TagType[]>;
+  selectedFilter!: string[];
 
   constructor(
     private tagsService: TagsService,
@@ -22,6 +23,7 @@ export class ModalFilterComponent implements OnInit {
 
   ngOnInit(): void {
     this.tagsList$ = this.tagsService.tagList$;
+    this.selectedFilter = this.taskColumnsService.selectedFilters.getValue();
   }
 
   onCloseModal() {
@@ -30,5 +32,9 @@ export class ModalFilterComponent implements OnInit {
 
   updateSelectedFilter(id: string) {
     this.taskColumnsService.updateSelectedFilters(id);
+  }
+
+  isFilterSelected(id: string) {
+    return this.selectedFilter.includes(id);
   }
 }

@@ -7,7 +7,11 @@
       <p class="filter-category">Etiquettes</p>
       @for (tag of (tagsList$ | async ); track $index) {
       <div class="filter-element">
-        <input type="checkbox" (change)="updateSelectedFilter(tag.id)" />
+        <input
+          type="checkbox"
+          (change)="updateSelectedFilter(tag.id)"
+          [checked]="isFilterSelected(tag.id)"
+        />
         <p class="filter-tag" [style.borderColor]="tag.color">{{ tag.name }}</p>
       </div>
       }

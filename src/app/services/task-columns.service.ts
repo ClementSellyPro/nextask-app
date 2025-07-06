@@ -111,5 +111,6 @@ export class TaskColumnsService {
         this.selectedFilters.next(updatedFilters);
       }
     }
+    console.log(this.selectedFilters.getValue());
   }
 }

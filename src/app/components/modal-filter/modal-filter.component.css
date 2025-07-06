@@ -14,7 +14,7 @@
   background-color: var(--bg-element);
   border: 1px solid var(--border-element);
   border-radius: var(--border-radius);
-  padding: 14px 14px 22px 14px;
+  padding: 14px 14px 0 14px;
   width: 250px;
   top: 170px;
   right: 85px;
