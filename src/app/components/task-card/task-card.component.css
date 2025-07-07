@@ -8,6 +8,7 @@
   border: 1px solid var(--border-element);
   padding: 8px 12px;
   overflow: hidden;
+  z-index: 1;
 }
 
 .card-container:hover {
@@ -51,6 +52,7 @@
   position: relative;
   display: inline-block;
   cursor: pointer;
+  z-index: 2;
 }
 
 .custom-checkbox .checkmark {
