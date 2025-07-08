@@ -66,8 +66,11 @@ export class ModalUpdateTagsComponent implements OnInit {
       name: this.newTagTitle,
       color: this.newTagColor,
     };
-    this.tagsService.addNewTag(newTag);
-    this.isAddingNewTag = false;
+
+    if (newTag.name) {
+      this.tagsService.addNewTag(newTag);
+      this.isAddingNewTag = false;
+    }
   }
 
   isTagSelected(tag: TagType) {

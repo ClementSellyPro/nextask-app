@@ -15,7 +15,8 @@
   position: absolute;
   top: 360px;
   left: 500px;
-  padding: 8px;
+  padding: 14px;
+  width: 300px;
   background-color: var(--bg-element);
   border: 1px solid var(--border-element);
   border-radius: var(--border-radius);
@@ -34,6 +35,7 @@
 .modal-update-tag-title {
   font-size: 14px;
   font-weight: 500;
+  margin-bottom: 14px;
 }
 
 .modal-update-tag-list {
@@ -68,4 +70,15 @@
 .button-add-tag {
   font-size: 14px;
   padding: 4px 0;
+}
+
+.modal-update-tag form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-update-tag-group {
+  display: flex;
+  justify-content: space-between;
 }
