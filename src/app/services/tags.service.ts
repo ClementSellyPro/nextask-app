@@ -23,4 +23,14 @@ export class TagsService {
 
     this.tagList.next(updatedTagList);
   }
+
+  updateTag(updatedTag: TagType) {
+    const updatedTagList = this.tagList.getValue().map((tag) => {
+      if (tag.id === updatedTag.id) {
+        return updatedTag;
+      }
+      return tag;
+    });
+    this.tagList.next(updatedTagList);
+  }
 }

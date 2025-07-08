@@ -18,6 +18,8 @@ export class ModalUpdateTagsComponent implements OnInit {
   @Input() currentTags!: TagType[];
   tagList$!: Observable<TagType[]>;
   isAddingNewTag: boolean = false;
+  isUpdatingTag: boolean = false;
+  tagToUpdateID!: string;
   selectedTags: TagType[] = [];
 
   newTagTitle!: string;
@@ -69,8 +71,27 @@ export class ModalUpdateTagsComponent implements OnInit {
 
     if (newTag.name) {
       this.tagsService.addNewTag(newTag);
+      this.resetAddTagForm();
       this.isAddingNewTag = false;
     }
+  }
+
+  onUpdateTag(id: string, name: string, color: string) {
+    this.newTagTitle = name;
+    this.newTagColor = color;
+    this.isUpdatingTag = true;
+    this.onOpenAddNewTagModal();
+    this.tagToUpdateID = id;
+  }
+
+  updateTag() {
+    const updatedTag = {
+      id: this.tagToUpdateID,
+      name: this.newTagTitle,
+      color: this.newTagColor,
+    };
+    this.tagsService.updateTag(updatedTag);
+    this.resetAddTagForm();
   }
 
   isTagSelected(tag: TagType) {
@@ -81,5 +102,10 @@ export class ModalUpdateTagsComponent implements OnInit {
       }
     });
     return isTagSelected;
+  }
+
+  resetAddTagForm() {
+    this.newTagTitle = '';
+    this.newTagColor = '';
   }
 }

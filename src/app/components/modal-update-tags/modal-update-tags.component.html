@@ -26,6 +26,7 @@
           class="update-tag-modify-icon"
           src="assets/pen.svg"
           alt="Icone modifier"
+          (click)="onUpdateTag(tag.id, tag.name, tag.color)"
         />
       </li>
       }
@@ -47,7 +48,10 @@
         <label>Couleur</label>
         <p-colorpicker [(ngModel)]="newTagColor" name="color" />
       </div>
-      <button class="button-primary button-add-tag" (click)="onAddNewTag()">
+      <button
+        class="button-primary button-add-tag"
+        (click)="isUpdatingTag ? updateTag() : onAddNewTag()"
+      >
         Ajouter
       </button>
     </form>
