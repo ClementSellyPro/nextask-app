@@ -62,6 +62,10 @@ export class ModalUpdateTagsComponent implements OnInit {
     this.isAddingNewTag = true;
   }
 
+  closeAddNewTagModal() {
+    this.isAddingNewTag = false;
+  }
+
   onAddNewTag() {
     const newTag: TagType = {
       id: '',
@@ -72,7 +76,7 @@ export class ModalUpdateTagsComponent implements OnInit {
     if (newTag.name) {
       this.tagsService.addNewTag(newTag);
       this.resetAddTagForm();
-      this.isAddingNewTag = false;
+      this.closeAddNewTagModal();
     }
   }
 
@@ -92,6 +96,7 @@ export class ModalUpdateTagsComponent implements OnInit {
     };
     this.tagsService.updateTag(updatedTag);
     this.resetAddTagForm();
+    this.closeAddNewTagModal();
   }
 
   isTagSelected(tag: TagType) {

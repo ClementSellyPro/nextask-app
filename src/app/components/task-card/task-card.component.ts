@@ -3,32 +3,50 @@ import {
   ElementRef,
   HostListener,
   Input,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CardType } from '../../models/Card.model';
-import { DatePipe, NgIf } from '@angular/common';
+import { AsyncPipe, DatePipe, NgIf } from '@angular/common';
 import { ModalAddCardComponent } from '../modal-add-card/modal-add-card.component';
+import { TagsService } from '../../services/tags.service';
+import { Observable } from 'rxjs';
+import { TagType } from '../../models/Tag.model';
 
 @Component({
   selector: 'app-task-card',
-  imports: [FormsModule, DatePipe, ModalAddCardComponent, NgIf],
+  imports: [FormsModule, DatePipe, ModalAddCardComponent, NgIf, AsyncPipe],
   templateUrl: './task-card.component.html',
   styleUrl: './task-card.component.css',
 })
-export class TaskCardComponent {
+export class TaskCardComponent implements OnInit {
   @ViewChild('checkSection', { static: false })
   checkSection!: ElementRef<HTMLElement>;
   isCompleted: boolean = false;
   isUpdating: boolean = false;
+  tagList$!: Observable<TagType[]>;
+  tagsCard!: TagType[];
+
   @Input() cardData!: CardType;
   @Input() columnID!: string;
+
+  constructor(private tagsService: TagsService) {}
+
+  ngOnInit(): void {
+    this.tagList$ = this.tagsService.tagList$;
+    this.tagsCard = this.cardData.tags;
+  }
 
   @HostListener('document:keydown.escape', ['$event'])
   onEscapeKey() {
     if (this.isUpdating) {
       this.isUpdating = false;
     }
+  }
+
+  isTagInCard(tag: TagType) {
+    return this.cardData.tags.some((t) => t.id === tag.id) ?? false;
   }
 
   onMouseHover() {

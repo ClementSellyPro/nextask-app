@@ -52,7 +52,7 @@
         class="button-primary button-add-tag"
         (click)="isUpdatingTag ? updateTag() : onAddNewTag()"
       >
-        Ajouter
+        {{ isUpdatingTag ? "Enregistrer" : "Ajouter" }}
       </button>
     </form>
     }

@@ -5,11 +5,11 @@
   (click)="onOpenUpdateModal($event)"
 >
   <div class="card-tags">
-    @for (tag of cardData.tags; track $index) {
+    @for (tag of tagList$ | async; track $index) { @if(isTagInCard(tag)){
     <p class="card-tag-item" [style.borderColor]="tag.color">
       {{ tag.name }}
     </p>
-    }
+    } }
   </div>
 
   <div class="card-content">
