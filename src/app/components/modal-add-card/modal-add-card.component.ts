@@ -72,8 +72,8 @@ export class ModalAddCardComponent implements OnInit {
     }
   }
 
-  onDateLimitSelection() {
-    console.log(this.cardForm.value.limitDate);
+  isTagSelected(tag: TagType) {
+    return this.cardToUpdate.tags.some((t) => t.id === tag.id) ?? false;
   }
 
   onCloseModal() {
