@@ -1,0 +1,45 @@
+.option-column-container {
+  position: relative;
+}
+
+.column-option-button {
+  margin-right: 4px;
+  padding: 10px 6px;
+  border-radius: 3px;
+}
+
+.column-option-button:hover {
+  cursor: pointer;
+  background-color: var(--bg-element);
+  filter: brightness(0.95);
+}
+
+.option-menu {
+  position: absolute;
+  top: 20;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px;
+  background-color: var(--bg-element);
+  border: 1px solid var(--border-element);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.option-delete-btn {
+  color: var(--red-color);
+}
+
+.option-modify-btn,
+.option-delete-btn {
+  padding: 4px 8px;
+}
+
+.option-modify-btn:hover,
+.option-delete-btn:hover {
+  cursor: pointer;
+  background-color: var(--border-element);
+  border-radius: 4px;
+}

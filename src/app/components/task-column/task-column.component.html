@@ -3,7 +3,7 @@
     <p class="task-column-title" [style.background-color]="columnData.color">
       {{ columnData.name }}
     </p>
-    <img class="column-option-button" src="assets/option.svg" alt="Option" />
+    <app-option-column />
   </div>
   <div class="tasks-container">
     @for (cardData of columnData.cards; track $index) {

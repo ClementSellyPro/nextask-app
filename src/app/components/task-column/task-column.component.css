@@ -23,18 +23,6 @@
   border-radius: 20px;
 }
 
-.column-option-button {
-  margin-right: 4px;
-  padding: 10px 6px;
-  border-radius: 3px;
-}
-
-.column-option-button:hover {
-  cursor: pointer;
-  background-color: var(--bg-element);
-  filter: brightness(0.95);
-}
-
 .tasks-container {
   display: flex;
   flex-direction: column;
