@@ -1,9 +1,10 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 
 @Component({
   selector: 'app-option-column',
-  imports: [NgIf],
+  imports: [NgIf, ClickOutsideDirective],
   templateUrl: './option-column.component.html',
   styleUrl: './option-column.component.css',
 })
@@ -12,5 +13,9 @@ export class OptionColumnComponent {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  closeMenu() {
+    this.isMenuOpen = false;
   }
 }
