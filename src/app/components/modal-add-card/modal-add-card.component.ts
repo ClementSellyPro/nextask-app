@@ -1,4 +1,4 @@
-import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DatePickerModule } from 'primeng/datepicker';
 import { DialogModule } from 'primeng/dialog';
@@ -30,7 +30,6 @@ import { ModalUpdateTagsComponent } from '../modal-update-tags/modal-update-tags
     DialogModule,
     ButtonModule,
     AsyncPipe,
-    NgIf,
     ModalUpdateTagsComponent,
   ],
   templateUrl: './modal-add-card.component.html',
@@ -60,9 +59,9 @@ export class ModalAddCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.tagList$ = this.tagsService.tagList$;
-    this.selectedTags.next(this.cardToUpdate.tags);
 
     if (this.cardToUpdate) {
+      this.selectedTags.next(this.cardToUpdate.tags);
       this.cardForm.patchValue({
         title: this.cardToUpdate.title,
         limitDate: this.cardToUpdate.limitDate,
@@ -73,7 +72,10 @@ export class ModalAddCardComponent implements OnInit {
   }
 
   isTagSelected(tag: TagType) {
-    return this.cardToUpdate.tags.some((t) => t.id === tag.id) ?? false;
+    if (this.cardToUpdate) {
+      return this.cardToUpdate.tags.some((t) => t.id === tag.id) ?? false;
+    }
+    return;
   }
 
   onCloseModal() {

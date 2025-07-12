@@ -1,14 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { TagType } from '../../models/Tag.model';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgIf } from '@angular/common';
 import { TagsService } from '../../services/tags.service';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { FormsModule } from '@angular/forms';
+import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 
 @Component({
   selector: 'app-modal-update-tags',
-  imports: [AsyncPipe, FormsModule, ColorPickerModule],
+  imports: [
+    AsyncPipe,
+    FormsModule,
+    ColorPickerModule,
+    NgIf,
+    ClickOutsideDirective,
+  ],
   templateUrl: './modal-update-tags.component.html',
   styleUrl: './modal-update-tags.component.css',
 })
@@ -21,6 +28,13 @@ export class ModalUpdateTagsComponent implements OnInit {
   isUpdatingTag: boolean = false;
   tagToUpdateID!: string;
   selectedTags: TagType[] = [];
+  isModalOpen: boolean = false;
+
+  storeSelectedTags: BehaviorSubject<TagType[]> = new BehaviorSubject<
+    TagType[]
+  >([]);
+  storeSelectedTags$: Observable<TagType[]> =
+    this.storeSelectedTags.asObservable();
 
   newTagTitle!: string;
   newTagColor!: string;
@@ -34,8 +48,14 @@ export class ModalUpdateTagsComponent implements OnInit {
     }
   }
 
+  onToggleTagModal() {
+    this.isModalOpen = !this.isModalOpen;
+    console.log(this.isModalOpen);
+  }
+
   onCloseModalUpdateTag() {
-    this.closeModalEvent.emit(false);
+    this.isModalOpen = false;
+    // this.closeModalEvent.emit(false);
   }
 
   onUpdateSelectedTags(clickedID: string) {
@@ -97,6 +117,10 @@ export class ModalUpdateTagsComponent implements OnInit {
     this.tagsService.updateTag(updatedTag);
     this.resetAddTagForm();
     this.closeAddNewTagModal();
+  }
+
+  updateSelectedTags(tags: TagType[]): void {
+    this.storeSelectedTags.next(tags);
   }
 
   isTagSelected(tag: TagType) {

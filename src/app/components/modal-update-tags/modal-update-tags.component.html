@@ -1,5 +1,18 @@
-<div class="modal-overlay" (click)="onCloseModalUpdateTag()">
-  <div class="modal-update-tag" (click)="$event.stopImmediatePropagation()">
+<div class="modal-update-tag-container">
+  <button
+    type="button"
+    class="modal-add-tag-button"
+    (click)="onToggleTagModal()"
+  >
+    +
+  </button>
+  <div
+    class="modal-update-tag"
+    (click)="$event.stopImmediatePropagation()"
+    *ngIf="isModalOpen"
+    clickOutside
+    (clickOutside)="onCloseModalUpdateTag()"
+  >
     @if (isAddingNewTag === false) {
     <div class="modal-update-tag-header">
       <h3 class="modal-update-tag-title">Etiquettes</h3>
