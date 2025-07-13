@@ -3,7 +3,9 @@
     <p class="task-column-title" [style.background-color]="columnData.color">
       {{ columnData.name }}
     </p>
-    <app-option-column />
+    <app-option-column
+      (deleteColumnEvent)="handleDeleteColumn(columnData.id)"
+    />
   </div>
   <div class="tasks-container">
     @for (cardData of columnData.cards; track $index) {
@@ -17,6 +19,6 @@
   <app-modal-add-card
     *ngIf="isModalTaskOpen"
     [columnID]="columnData.id"
-    (closeModal)="onCloseModal()"
+    (closeModal)="handleCloseModal()"
   />
 </div>

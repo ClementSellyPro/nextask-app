@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 
 @Component({
@@ -9,6 +9,7 @@ import { ClickOutsideDirective } from '../../directives/click-outside.directive'
   styleUrl: './option-column.component.css',
 })
 export class OptionColumnComponent {
+  @Output() deleteColumnEvent = new EventEmitter<void>();
   isMenuOpen: boolean = false;
 
   toggleMenu() {
@@ -17,5 +18,9 @@ export class OptionColumnComponent {
 
   closeMenu() {
     this.isMenuOpen = false;
+  }
+
+  onDeleteColumn() {
+    this.deleteColumnEvent.emit();
   }
 }

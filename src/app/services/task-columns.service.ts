@@ -44,6 +44,13 @@ export class TaskColumnsService {
     this.taskColumns.next(updatedColumnList);
   }
 
+  deleteColumn(id: string) {
+    const updatedColumnList = this.taskColumns
+      .getValue()
+      .filter((column) => column.id !== id);
+    this.taskColumns.next(updatedColumnList);
+  }
+
   addNewCard(card: CardType, columnID: string) {
     const newCard: CardType = {
       ...card,

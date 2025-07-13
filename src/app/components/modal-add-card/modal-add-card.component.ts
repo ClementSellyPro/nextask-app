@@ -36,7 +36,7 @@ import { ModalUpdateTagsComponent } from '../modal-update-tags/modal-update-tags
   styleUrl: './modal-add-card.component.css',
 })
 export class ModalAddCardComponent implements OnInit {
-  @Output() closeModal = new EventEmitter<void>();
+  @Output() closeModal = new EventEmitter<boolean>();
   @Input() columnID!: string;
   @Input() cardToUpdate!: CardType;
   tagList$!: Observable<TagType[]>;
@@ -79,7 +79,14 @@ export class ModalAddCardComponent implements OnInit {
   }
 
   onCloseModal() {
-    this.closeModal.emit();
+    console.log("Modal: Tentative d'émission de l'événement");
+    console.log('Modal: EventEmitter existe ?', !!this.closeModal);
+    console.log(
+      'Modal: EventEmitter observers:',
+      this.closeModal.observers.length
+    );
+    this.closeModal.emit(true);
+    console.log('Modal: Événement émis');
   }
 
   onCancel() {
