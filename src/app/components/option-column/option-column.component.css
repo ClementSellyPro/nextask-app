@@ -43,3 +43,21 @@
   background-color: var(--border-element);
   border-radius: 4px;
 }
+
+.form-update-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.buttons button {
+  min-width: 80px;
+  max-height: 35px;
+  padding: 2px 0;
+  font-size: 14px;
+}

@@ -7,7 +7,28 @@
   />
 
   <div class="option-menu" *ngIf="isMenuOpen">
-    <p class="option-modify-btn">Modifier</p>
+    <p class="option-modify-btn" (click)="onOpenUpdateForm()">Modifier</p>
     <p class="option-delete-btn" (click)="onDeleteColumn()">Supprimer</p>
+  </div>
+
+  <div class="option-menu" *ngIf="isUpdatingColumn">
+    <form class="form-update-column">
+      <div>
+        <label>Titre</label>
+        <input type="text" [(ngModel)]="titleUpdate" name="titleUpdate" />
+      </div>
+      <div>
+        <label>Couleur</label>
+        <p-color-picker [(ngModel)]="colorUpdate" name="colorUpdate" />
+      </div>
+      <div class="buttons">
+        <button class="button-secondary" (click)="onCancelUpdateColumn()">
+          Annuler
+        </button>
+        <button class="button-primary" (click)="onSaveUpdateColumn()">
+          Enregistrer
+        </button>
+      </div>
+    </form>
   </div>
 </div>
