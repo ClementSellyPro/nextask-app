@@ -4,6 +4,7 @@
       {{ columnData.name }}
     </p>
     <app-option-column
+      [columnId]="columnData.id"
       [currentTitle]="columnData.name"
       [currentColor]="columnData.color"
       (deleteColumnEvent)="handleDeleteColumn(columnData.id)"

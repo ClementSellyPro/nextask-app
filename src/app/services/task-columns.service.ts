@@ -44,6 +44,16 @@ export class TaskColumnsService {
     this.taskColumns.next(updatedColumnList);
   }
 
+  updateColumn(columnId: string, titleUpdate: string, colorUpdate: string) {
+    const updatedColumns = this.taskColumns.getValue().map((column) => {
+      if (column.id === columnId) {
+        return { ...column, name: titleUpdate, color: colorUpdate };
+      }
+      return column;
+    });
+    this.taskColumns.next(updatedColumns);
+  }
+
   deleteColumn(id: string) {
     const updatedColumnList = this.taskColumns
       .getValue()
