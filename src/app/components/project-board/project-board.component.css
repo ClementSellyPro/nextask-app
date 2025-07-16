@@ -43,7 +43,9 @@
 
 .adding-column-buttons {
   display: flex;
+  justify-content: space-between;
   gap: 14px;
+  margin-top: 8px;
 }
 
 .adding-column-add {
@@ -61,4 +63,5 @@
   min-width: 40px;
   max-height: 40px;
   padding: 0;
+  border: 2px solid var(--red-color);
 }

@@ -30,6 +30,8 @@ export class ProjectBoardComponent implements OnInit {
   }
 
   onCloseNewColumn() {
+    this.title = '';
+    this.color = '#758bfd';
     this.isAddNewColumn = false;
   }
 

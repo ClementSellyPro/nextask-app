@@ -11,12 +11,14 @@
   } @else {
   <div class="adding-column-button">
     <form class="adding-column-container">
+      <label>Titre:</label>
       <input
         type="text"
         class="adding-column-input"
         name="title"
         [(ngModel)]="title"
       />
+      <label>Couleur:</label>
       <p-colorpicker [(ngModel)]="color" name="color" />
       <div class="adding-column-buttons">
         <button class="adding-column-add" (click)="onAddNewColumn()">
