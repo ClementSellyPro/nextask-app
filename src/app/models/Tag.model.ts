@@ -3,3 +3,8 @@ export interface TagType {
   name: string;
   color: string;
 }
+
+export interface TagRequest {
+  name: string;
+  color: string;
+}

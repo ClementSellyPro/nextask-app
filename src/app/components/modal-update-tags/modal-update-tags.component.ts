@@ -50,7 +50,6 @@ export class ModalUpdateTagsComponent implements OnInit {
 
   onToggleTagModal() {
     this.isModalOpen = !this.isModalOpen;
-    console.log(this.isModalOpen);
   }
 
   onCloseModalUpdateTag() {
