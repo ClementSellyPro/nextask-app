@@ -22,7 +22,6 @@ export class ModalFilterComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.tagsList$ = this.tagsService.tagList$;
     this.selectedFilter = this.taskColumnsService.selectedFilters.getValue();
     this.tagsList$ = this.tagsService.getTags();
   }

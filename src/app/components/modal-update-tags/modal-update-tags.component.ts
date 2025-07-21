@@ -42,7 +42,7 @@ export class ModalUpdateTagsComponent implements OnInit {
   constructor(private tagsService: TagsService) {}
 
   ngOnInit(): void {
-    this.tagList$ = this.tagsService.tagList$;
+    this.tagList$ = this.tagsService.getTags();
     if (this.currentTags) {
       this.selectedTags = this.currentTags;
     }

@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, tap, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  Observable,
+  Subject,
+  takeUntil,
+  tap,
+  throwError,
+} from 'rxjs';
 import { TagRequest, TagType } from '../models/Tag.model';
 import { v4 as uuidv4 } from 'uuid';
 import { DataService } from './data.service';
@@ -9,6 +17,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root',
 })
 export class TagsService {
+  private destroy$ = new Subject<void>();
   private apiUrl = 'http://localhost:9000/api';
 
   private httpOptions = {
@@ -20,17 +29,19 @@ export class TagsService {
   tagList: BehaviorSubject<TagType[]> = new BehaviorSubject<TagType[]>([]);
   tagList$: Observable<TagType[]> = this.tagList.asObservable();
 
-  constructor(private dataService: DataService, private http: HttpClient) {
-    this.dataService.getTagsData().subscribe((data) => {
-      this.tagList.next(data);
-    });
+  constructor(private http: HttpClient) {
+    this.tagList$ = this.getTags();
+  }
+
+  refreshTagList() {
+    this.tagList$ = this.getTags();
   }
 
   getTags(): Observable<any> {
     return this.http.get(`${this.apiUrl}/tags`);
   }
 
-  addTag(tag: TagType) {
+  addNewTag(tag: TagType) {
     const tagWithoutId: TagRequest = {
       name: tag.name,
       color: tag.color,
@@ -41,22 +52,21 @@ export class TagsService {
       .subscribe();
   }
 
-  addNewTag(tag: TagType) {
-    // const newTag = { ...tag, id: uuidv4() };
-    // const updatedTagList = [...this.tagList.getValue(), newTag];
-
-    // this.tagList.next(updatedTagList);
-
-    this.addTag(tag);
+  updateTag(updatedTag: TagType) {
+    return this.http
+      .put(`${this.apiUrl}/tags/${updatedTag.id}`, updatedTag, this.httpOptions)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (result) => {
+          console.log('Success:', result);
+          this.refreshTagList();
+        },
+        error: (error) => console.error('Error:', error),
+      });
   }
 
-  updateTag(updatedTag: TagType) {
-    const updatedTagList = this.tagList.getValue().map((tag) => {
-      if (tag.id === updatedTag.id) {
-        return updatedTag;
-      }
-      return tag;
-    });
-    this.tagList.next(updatedTagList);
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

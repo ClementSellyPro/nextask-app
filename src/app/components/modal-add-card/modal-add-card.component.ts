@@ -58,7 +58,7 @@ export class ModalAddCardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.tagList$ = this.tagsService.tagList$;
+    this.tagList$ = this.tagsService.getTags();
 
     if (this.cardToUpdate) {
       this.selectedTags.next(this.cardToUpdate.tags);
