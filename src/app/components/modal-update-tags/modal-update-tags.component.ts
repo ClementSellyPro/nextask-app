@@ -93,7 +93,7 @@ export class ModalUpdateTagsComponent implements OnInit {
     };
 
     if (newTag.name) {
-      this.tagsService.addNewTag(newTag);
+      this.tagsService.addNewTag(newTag).subscribe();
       this.resetAddTagForm();
       this.closeAddNewTagModal();
     }
@@ -113,7 +113,7 @@ export class ModalUpdateTagsComponent implements OnInit {
       name: this.newTagTitle,
       color: this.newTagColor,
     };
-    this.tagsService.updateTag(updatedTag);
+    this.tagsService.updateTag(updatedTag).subscribe();
     this.resetAddTagForm();
     this.closeAddNewTagModal();
   }

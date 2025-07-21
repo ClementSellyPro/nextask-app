@@ -1,16 +1,6 @@
 import { Injectable } from '@angular/core';
-import {
-  BehaviorSubject,
-  catchError,
-  Observable,
-  Subject,
-  takeUntil,
-  tap,
-  throwError,
-} from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil, tap } from 'rxjs';
 import { TagRequest, TagType } from '../models/Tag.model';
-import { v4 as uuidv4 } from 'uuid';
-import { DataService } from './data.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -30,39 +20,35 @@ export class TagsService {
   tagList$: Observable<TagType[]> = this.tagList.asObservable();
 
   constructor(private http: HttpClient) {
-    this.tagList$ = this.getTags();
+    this.loadTags();
   }
 
-  refreshTagList() {
-    this.tagList$ = this.getTags();
+  loadTags() {
+    this.http
+      .get<TagType[]>(`${this.apiUrl}/tags`)
+      .subscribe((tags) => this.tagList.next(tags));
   }
 
-  getTags(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/tags`);
+  getTags(): Observable<TagType[]> {
+    return this.tagList$;
   }
 
-  addNewTag(tag: TagType) {
+  addNewTag(tag: TagType): Observable<TagType> {
     const tagWithoutId: TagRequest = {
       name: tag.name,
       color: tag.color,
     };
 
     return this.http
-      .post(`${this.apiUrl}/tags`, tagWithoutId, this.httpOptions)
-      .subscribe();
+      .post<TagType>(`${this.apiUrl}/tags`, tagWithoutId, this.httpOptions)
+      .pipe(tap(() => this.loadTags()));
   }
 
   updateTag(updatedTag: TagType) {
     return this.http
       .put(`${this.apiUrl}/tags/${updatedTag.id}`, updatedTag, this.httpOptions)
       .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: (result) => {
-          console.log('Success:', result);
-          this.refreshTagList();
-        },
-        error: (error) => console.error('Error:', error),
-      });
+      .pipe(tap(() => this.loadTags()));
   }
 
   ngOnDestroy() {
