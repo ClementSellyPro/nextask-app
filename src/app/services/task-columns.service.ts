@@ -1,14 +1,22 @@
 import { Injectable } from '@angular/core';
-import { TaskColumType } from '../models/TaskColumn.model';
+import { TaskColumnRequest, TaskColumType } from '../models/TaskColumn.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { CardType } from '../models/Card.model';
 import { DataService } from './data.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskColumnsService {
+  private apiUrl = 'http://localhost:9000/api';
+  private headearOption = {
+    header: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
+
   uuid: string = uuidv4();
   allData!: TaskColumType[];
   selectedFilters: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
@@ -21,7 +29,7 @@ export class TaskColumnsService {
   >([]);
   taskColumns$: Observable<TaskColumType[]> = this.taskColumns.asObservable();
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private http: HttpClient) {
     this.dataService.getColumsData().subscribe((data) => {
       this.allData = data;
       this.taskColumns.next(data);
@@ -32,16 +40,14 @@ export class TaskColumnsService {
     return this.taskColumns;
   }
 
-  addNewColumn(name: string, color: string) {
-    const newColumn: TaskColumType = {
-      id: uuidv4(),
+  addNewColumn(name: string, color: string): Observable<TaskColumType> {
+    const newColumn: TaskColumnRequest = {
       name: name,
       color: color,
       cards: [],
     };
-    const updatedColumnList = [...this.taskColumns.getValue(), newColumn];
 
-    this.taskColumns.next(updatedColumnList);
+    return this.http.post<TaskColumType>(`${this.apiUrl}/columns`, newColumn);
   }
 
   updateColumn(columnId: string, titleUpdate: string, colorUpdate: string) {

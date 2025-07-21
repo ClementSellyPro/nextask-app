@@ -6,3 +6,9 @@ export interface TaskColumType {
   color: string;
   cards: CardType[];
 }
+
+export interface TaskColumnRequest {
+  name: string;
+  color: string;
+  cards: CardType[];
+}
