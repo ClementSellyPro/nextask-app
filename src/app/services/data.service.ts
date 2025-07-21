@@ -8,6 +8,8 @@ import { TaskColumType } from '../models/TaskColumn.model';
   providedIn: 'root',
 })
 export class DataService {
+  private apiUrl = 'http://localhost:9000/api';
+
   columnsData$!: Observable<TaskColumType[]>;
   tagsData$!: Observable<TagType[]>;
 
@@ -16,7 +18,7 @@ export class DataService {
   getColumsData(): Observable<TaskColumType[]> {
     if (!this.columnsData$) {
       this.columnsData$ = this.http
-        .get<TaskColumType[]>('assets/data/tasks.json')
+        .get<TaskColumType[]>(`${this.apiUrl}/columns`)
         .pipe(shareReplay(1));
     }
     return this.columnsData$;
@@ -25,7 +27,7 @@ export class DataService {
   getTagsData(): Observable<TagType[]> {
     if (!this.tagsData$) {
       this.tagsData$ = this.http
-        .get<TagType[]>('assets/data/tags.json')
+        .get<TagType[]>(`${this.apiUrl}/tags`)
         .pipe(shareReplay(1));
     }
     return this.tagsData$;

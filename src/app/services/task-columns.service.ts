@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { TaskColumnRequest, TaskColumType } from '../models/TaskColumn.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { CardType } from '../models/Card.model';
 import { DataService } from './data.service';
@@ -51,13 +51,9 @@ export class TaskColumnsService {
   }
 
   updateColumn(columnId: string, titleUpdate: string, colorUpdate: string) {
-    const updatedColumns = this.taskColumns.getValue().map((column) => {
-      if (column.id === columnId) {
-        return { ...column, name: titleUpdate, color: colorUpdate };
-      }
-      return column;
-    });
-    this.taskColumns.next(updatedColumns);
+    const updatedColumn = { name: titleUpdate, color: colorUpdate };
+
+    return this.http.put(`${this.apiUrl}/columns/${columnId}`, updatedColumn);
   }
 
   deleteColumn(id: string) {

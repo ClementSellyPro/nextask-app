@@ -46,11 +46,9 @@ export class OptionColumnComponent implements OnInit {
   }
 
   onSaveUpdateColumn() {
-    this.taskColumnsService.updateColumn(
-      this.columnId,
-      this.titleUpdate,
-      this.colorUpdate
-    );
+    this.taskColumnsService
+      .updateColumn(this.columnId, this.titleUpdate, this.colorUpdate)
+      .subscribe();
     this.isUpdatingColumn = false;
   }
 
