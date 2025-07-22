@@ -15,14 +15,14 @@ export class DataService {
 
   constructor(private http: HttpClient) {}
 
-  getColumsData(): Observable<TaskColumType[]> {
-    if (!this.columnsData$) {
-      this.columnsData$ = this.http
-        .get<TaskColumType[]>(`${this.apiUrl}/columns`)
-        .pipe(shareReplay(1));
-    }
-    return this.columnsData$;
-  }
+  // getColumsData(): Observable<TaskColumType[]> {
+  //   if (!this.columnsData$) {
+  //     this.columnsData$ = this.http
+  //       .get<TaskColumType[]>(`${this.apiUrl}/columns`)
+  //       .pipe(shareReplay(1));
+  //   }
+  //   return this.columnsData$;
+  // }
 
   getTagsData(): Observable<TagType[]> {
     if (!this.tagsData$) {

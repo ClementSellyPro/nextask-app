@@ -38,6 +38,7 @@ export class OptionColumnComponent implements OnInit {
 
   onDeleteColumn() {
     this.deleteColumnEvent.emit();
+    this.isMenuOpen = false;
   }
 
   onOpenUpdateForm() {

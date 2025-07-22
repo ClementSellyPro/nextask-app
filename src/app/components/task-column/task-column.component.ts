@@ -33,6 +33,7 @@ export class TaskColumnComponent {
   }
 
   handleDeleteColumn(id: string) {
-    this.taskColumnService.deleteColumn(id);
+    this.taskColumnService.deleteColumn(id).subscribe();
+    this.isModalTaskOpen = false;
   }
 }

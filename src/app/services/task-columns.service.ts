@@ -29,15 +29,21 @@ export class TaskColumnsService {
   >([]);
   taskColumns$: Observable<TaskColumType[]> = this.taskColumns.asObservable();
 
-  constructor(private dataService: DataService, private http: HttpClient) {
-    this.dataService.getColumsData().subscribe((data) => {
-      this.allData = data;
-      this.taskColumns.next(data);
-    });
+  constructor(private http: HttpClient) {
+    this.loadColumnsData();
+  }
+
+  loadColumnsData() {
+    this.http
+      .get<TaskColumType[]>(`${this.apiUrl}/columns`)
+      .subscribe((data) => {
+        this.allData = data;
+        this.taskColumns.next(data);
+      });
   }
 
   getData() {
-    return this.taskColumns;
+    return this.taskColumns$;
   }
 
   addNewColumn(name: string, color: string): Observable<TaskColumType> {
@@ -47,7 +53,9 @@ export class TaskColumnsService {
       cards: [],
     };
 
-    return this.http.post<TaskColumType>(`${this.apiUrl}/columns`, newColumn);
+    return this.http
+      .post<TaskColumType>(`${this.apiUrl}/columns`, newColumn)
+      .pipe(tap(() => this.loadColumnsData()));
   }
 
   updateColumn(columnId: string, titleUpdate: string, colorUpdate: string) {
@@ -57,10 +65,9 @@ export class TaskColumnsService {
   }
 
   deleteColumn(id: string) {
-    const updatedColumnList = this.taskColumns
-      .getValue()
-      .filter((column) => column.id !== id);
-    this.taskColumns.next(updatedColumnList);
+    return this.http
+      .delete(`${this.apiUrl}/columns/${id}`)
+      .pipe(tap(() => this.loadColumnsData()));
   }
 
   addNewCard(card: CardType, columnID: string) {
