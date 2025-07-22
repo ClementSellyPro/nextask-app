@@ -61,7 +61,9 @@ export class TaskColumnsService {
   updateColumn(columnId: string, titleUpdate: string, colorUpdate: string) {
     const updatedColumn = { name: titleUpdate, color: colorUpdate };
 
-    return this.http.put(`${this.apiUrl}/columns/${columnId}`, updatedColumn);
+    return this.http
+      .put(`${this.apiUrl}/columns/${columnId}`, updatedColumn)
+      .pipe(tap(() => this.loadColumnsData()));
   }
 
   deleteColumn(id: string) {
