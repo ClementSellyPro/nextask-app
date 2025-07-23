@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { TaskColumnRequest, TaskColumType } from '../models/TaskColumn.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { CardType } from '../models/Card.model';
-import { DataService } from './data.service';
+import { CardRequest, CardType } from '../models/Card.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
@@ -11,8 +10,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class TaskColumnsService {
   private apiUrl = 'http://localhost:9000/api';
-  private headearOption = {
-    header: new HttpHeaders({
+  private httpOptions = {
+    headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   };
@@ -46,6 +45,8 @@ export class TaskColumnsService {
     return this.taskColumns$;
   }
 
+  // ================ COLUMNS OPERATIONS =======================
+
   addNewColumn(name: string, color: string): Observable<TaskColumType> {
     const newColumn: TaskColumnRequest = {
       name: name,
@@ -72,24 +73,21 @@ export class TaskColumnsService {
       .pipe(tap(() => this.loadColumnsData()));
   }
 
-  addNewCard(card: CardType, columnID: string) {
-    const newCard: CardType = {
-      ...card,
-      id: uuidv4(),
-    };
+  // ================ CARDS OPERATIONS =======================
 
-    const currentColumns: TaskColumType[] = this.taskColumns.getValue();
-    const updatedColumns: TaskColumType[] = currentColumns.map((column) => {
-      if (column.id === columnID) {
-        return {
-          ...column,
-          cards: [...column.cards, newCard],
-        };
-      }
-      return column;
+  addNewCard(card: CardRequest, columnID: string) {
+    const tagsId = card.tags.map((tag) => {
+      return tag.id;
     });
-
-    this.taskColumns.next(updatedColumns);
+    const newCard = {
+      ...card,
+      tags: tagsId,
+      column_id: columnID,
+    };
+    console.log('SERVICE :  addNewCard : ', newCard);
+    return this.http
+      .post<CardRequest>(`${this.apiUrl}/cards`, newCard, this.httpOptions)
+      .pipe(tap(() => this.loadColumnsData()));
   }
 
   updateCard(card: CardType, columnID: string) {

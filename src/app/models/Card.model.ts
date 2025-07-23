@@ -8,3 +8,11 @@ export interface CardType {
   limitDate: Date;
   storyPoints: string;
 }
+
+export interface CardRequest {
+  tags: TagType[];
+  title: string;
+  description: string;
+  limitDate: Date;
+  storyPoints: string;
+}

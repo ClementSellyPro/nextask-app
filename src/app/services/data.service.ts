@@ -24,12 +24,12 @@ export class DataService {
   //   return this.columnsData$;
   // }
 
-  getTagsData(): Observable<TagType[]> {
-    if (!this.tagsData$) {
-      this.tagsData$ = this.http
-        .get<TagType[]>(`${this.apiUrl}/tags`)
-        .pipe(shareReplay(1));
-    }
-    return this.tagsData$;
-  }
+  // getTagsData(): Observable<TagType[]> {
+  //   if (!this.tagsData$) {
+  //     this.tagsData$ = this.http
+  //       .get<TagType[]>(`${this.apiUrl}/tags`)
+  //       .pipe(shareReplay(1));
+  //   }
+  //   return this.tagsData$;
+  // }
 }

@@ -12,7 +12,7 @@ import {
 } from '@angular/forms';
 import { CalendarModule } from 'primeng/calendar';
 import { TaskColumnsService } from '../../services/task-columns.service';
-import { CardType } from '../../models/Card.model';
+import { CardRequest, CardType } from '../../models/Card.model';
 import { TagsService } from '../../services/tags.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { TagType } from '../../models/Tag.model';
@@ -97,8 +97,7 @@ export class ModalAddCardComponent implements OnInit {
     if (this.cardForm.valid) {
       const formData = this.cardForm.value;
 
-      const newCard: CardType = {
-        id: '',
+      const newCard: CardRequest = {
         title: formData.title!,
         description: formData.description!,
         tags: this.selectedTags.getValue(),
@@ -106,7 +105,7 @@ export class ModalAddCardComponent implements OnInit {
         storyPoints: formData.storyPoints!,
       };
 
-      this.taskColumnsService.addNewCard(newCard, this.columnID);
+      this.taskColumnsService.addNewCard(newCard, this.columnID).subscribe();
       this.closeModal.emit();
     } else {
       this.cardForm.markAllAsTouched();
