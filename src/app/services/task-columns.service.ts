@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { CardRequest, CardType } from '../models/Card.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { TagType } from '../models/Tag.model';
 
 @Injectable({
   providedIn: 'root',
@@ -75,40 +76,42 @@ export class TaskColumnsService {
 
   // ================ CARDS OPERATIONS =======================
 
-  addNewCard(card: CardRequest, columnID: string) {
-    const tagsId = card.tags.map((tag) => {
+  getTags(tags: TagType[]) {
+    return tags.map((tag) => {
       return tag.id;
     });
+  }
+
+  addNewCard(card: CardRequest, columnID: string) {
+    const tagsId = this.getTags(card.tags);
+
     const newCard = {
       ...card,
       tags: tagsId,
       column_id: columnID,
     };
-    console.log('SERVICE :  addNewCard : ', newCard);
+
     return this.http
       .post<CardRequest>(`${this.apiUrl}/cards`, newCard, this.httpOptions)
       .pipe(tap(() => this.loadColumnsData()));
   }
 
   updateCard(card: CardType, columnID: string) {
-    const updatedColumns: TaskColumType[] = this.taskColumns
-      .getValue()
-      .map((currentColumn) => {
-        if (currentColumn.id === columnID) {
-          return {
-            ...currentColumn,
-            cards: currentColumn.cards.map((currentCard) => {
-              if (currentCard.id === card.id) {
-                return { ...card };
-              }
-              return currentCard;
-            }),
-          };
-        }
-        return currentColumn;
-      });
+    const tagsId = this.getTags(card.tags);
 
-    this.taskColumns.next(updatedColumns);
+    const updatedCard = {
+      ...card,
+      tags: tagsId,
+      column_id: columnID,
+    };
+
+    return this.http
+      .put<CardType>(
+        `${this.apiUrl}/cards/${card.id}`,
+        updatedCard,
+        this.httpOptions
+      )
+      .pipe(tap(() => this.loadColumnsData()));
   }
 
   deleteCard(cardID: string, columnID: string) {
