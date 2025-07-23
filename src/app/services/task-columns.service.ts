@@ -114,19 +114,10 @@ export class TaskColumnsService {
       .pipe(tap(() => this.loadColumnsData()));
   }
 
-  deleteCard(cardID: string, columnID: string) {
-    const updatedColumns: TaskColumType[] = this.taskColumns
-      .getValue()
-      .map((column) => {
-        if (column.id === columnID) {
-          return {
-            ...column,
-            cards: column.cards.filter((card) => card.id !== cardID),
-          };
-        }
-        return column;
-      });
-    this.taskColumns.next(updatedColumns);
+  deleteCard(cardID: string) {
+    return this.http
+      .delete(`${this.apiUrl}/cards/${cardID}`)
+      .pipe(tap(() => this.loadColumnsData()));
   }
 
   updateSelectedFilters(id: string) {
