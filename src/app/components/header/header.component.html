@@ -11,8 +11,11 @@
       Créer un compte
     </button>
     } @if(currentUrl.startsWith('/dashboard')) {
-    <div class="user-icon">
+    <div class="user-icon" (click)="onClickUser()">
       <img src="assets/user.svg" alt="Photo utilisateur" />
+      <div class="user-menu" *ngIf="isUserMenuOpen">
+        <p class="deco-button">Deconnexion</p>
+      </div>
     </div>
     }
   </div>

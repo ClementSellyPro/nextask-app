@@ -23,14 +23,36 @@ header {
   gap: 12px;
 }
 
+.user-icon {
+  position: relative;
+}
+
 .user-icon:hover {
   cursor: pointer;
-  opacity: 0.8;
 }
 
 /* all buttons {
   are set into the global styles.css;
 } */
+
+.user-menu {
+  position: absolute;
+  right: 0;
+  top: 60px;
+  border-radius: var(--border-radius);
+  background-color: var(--bg-element);
+  border: 1px solid var(--border-element);
+  padding: 24px 14px;
+  z-index: 20;
+}
+
+.deco-button {
+  color: var(--red-color);
+}
+
+.deco-button:hover {
+  opacity: 0.6;
+}
 
 @media (max-width: 1199px) {
   header {
