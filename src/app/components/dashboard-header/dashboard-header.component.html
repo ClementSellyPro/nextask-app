@@ -1,5 +1,22 @@
 <div class="dashboard-header">
-  <h1 class="dashboard-title">Project Title</h1>
+  <div>
+    @if(isUpdatingTitle) {
+    <div class="updating-form">
+      <input class="title-input" type="text" name="title-input" />
+      <div class="title-buttons">
+        <button class="button-secondary" (click)="cancelTitleInput()">
+          Annuler
+        </button>
+        <button class="button-primary" (click)="saveTitleInput()">
+          Enregistrer
+        </button>
+      </div>
+    </div>
+
+    } @else {
+    <h1 class="dashboard-title" (click)="onClickTitle()">Project Title</h1>
+    }
+  </div>
 
   <div class="dashboard-filter-section">
     <div class="dashboard-filter-button" (click)="onFilterClick()">

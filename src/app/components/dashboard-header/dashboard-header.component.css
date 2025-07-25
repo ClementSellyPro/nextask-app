@@ -12,6 +12,11 @@
   padding: 14px 0;
 }
 
+.dashboard-title:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
 .dashboard-filter-section {
   position: relative;
 }
@@ -27,4 +32,27 @@
 .dashboard-filter-button:hover {
   cursor: pointer;
   background-color: var(--bg-element);
+}
+
+.updating-form {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin: 12px 0;
+}
+
+.title-input {
+  font-size: 18px;
+  padding: 8px 4px;
+}
+
+.title-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.title-buttons button {
+  min-width: 100px;
+  max-height: 40px;
+  font-size: 14px;
 }

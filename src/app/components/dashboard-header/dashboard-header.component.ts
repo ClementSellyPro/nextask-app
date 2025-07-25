@@ -10,8 +10,21 @@ import { ModalFilterComponent } from '../modal-filter/modal-filter.component';
 })
 export class DashboardHeaderComponent {
   isModalOpen: boolean = false;
+  isUpdatingTitle: boolean = false;
 
   onFilterClick() {
     this.isModalOpen = !this.isModalOpen;
+  }
+
+  onClickTitle() {
+    this.isUpdatingTitle = true;
+  }
+
+  cancelTitleInput() {
+    this.isUpdatingTitle = false;
+  }
+
+  saveTitleInput() {
+    this.isUpdatingTitle = false;
   }
 }
