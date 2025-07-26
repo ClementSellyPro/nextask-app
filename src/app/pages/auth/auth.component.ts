@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth',
@@ -13,7 +14,11 @@ export class AuthComponent implements OnInit {
   name!: string;
   password!: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -22,10 +27,18 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmitLogin() {
+    this.resetForm();
     this.router.navigateByUrl('dashboard');
   }
 
   onSubmitSignup() {
+    this.authService.register(this.name, this.password).subscribe();
+    this.resetForm();
     this.router.navigateByUrl('/auth/login');
+  }
+
+  resetForm() {
+    this.name = '';
+    this.password = '';
   }
 }
