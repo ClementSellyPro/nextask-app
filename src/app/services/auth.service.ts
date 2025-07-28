@@ -18,7 +18,6 @@ export class AuthService {
       username: username,
       password: password,
     };
-    console.log(newUser);
 
     return this.http.post<any>(`${this.apiUrl}/register`, newUser);
   }

@@ -27,8 +27,19 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmitLogin() {
-    this.resetForm();
-    this.router.navigateByUrl('dashboard');
+    this.authService.login(this.name, this.password).subscribe({
+      next: (response) => {
+        if (response.token) {
+          this.router.navigateByUrl('dashboard');
+        } else {
+          alert('Connexion echouee');
+        }
+        this.resetForm();
+      },
+      error: (err) => {
+        console.error('Login error:', err);
+      },
+    });
   }
 
   onSubmitSignup() {
