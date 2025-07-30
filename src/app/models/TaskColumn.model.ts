@@ -12,3 +12,10 @@ export interface TaskColumnRequest {
   color: string;
   cards: CardType[];
 }
+
+export interface TaskColumnResponse {
+  id: string;
+  name: string;
+  color: string;
+  projectId: string;
+}

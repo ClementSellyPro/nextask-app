@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { TaskColumnRequest, TaskColumType } from '../models/TaskColumn.model';
+import {
+  TaskColumnRequest,
+  TaskColumnResponse,
+  TaskColumType,
+} from '../models/TaskColumn.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { CardRequest, CardType } from '../models/Card.model';
@@ -18,16 +22,17 @@ export class TaskColumnsService {
   };
 
   uuid: string = uuidv4();
-  allData!: TaskColumType[];
+  allData!: TaskColumnResponse[];
   selectedFilters: BehaviorSubject<string[]> = new BehaviorSubject<string[]>(
     []
   );
   selectedFilters$: Observable<string[]> = this.selectedFilters.asObservable();
 
-  taskColumns: BehaviorSubject<TaskColumType[]> = new BehaviorSubject<
-    TaskColumType[]
+  taskColumns: BehaviorSubject<TaskColumnResponse[]> = new BehaviorSubject<
+    TaskColumnResponse[]
   >([]);
-  taskColumns$: Observable<TaskColumType[]> = this.taskColumns.asObservable();
+  taskColumns$: Observable<TaskColumnResponse[]> =
+    this.taskColumns.asObservable();
 
   constructor(private http: HttpClient) {
     this.loadColumnsData();
@@ -35,7 +40,7 @@ export class TaskColumnsService {
 
   loadColumnsData() {
     this.http
-      .get<TaskColumType[]>(`${this.apiUrl}/columns`)
+      .get<TaskColumnResponse[]>(`${this.apiUrl}/columns`)
       .subscribe((data) => {
         this.allData = data;
         this.taskColumns.next(data);
@@ -133,30 +138,30 @@ export class TaskColumnsService {
         this.selectedFilters.next(updatedFilters);
       }
     }
-    this.sortData();
+    // this.sortData();
   }
 
-  sortData() {
-    if (this.selectedFilters.getValue().length === 0) {
-      this.taskColumns.next(this.allData);
-    } else {
-      this.taskColumns.next(this.allData);
-      const sortedTaskColumns = this.taskColumns.getValue().map((column) => {
-        return {
-          ...column,
-          cards: column.cards.filter((card) => {
-            const tags = card.tags;
+  // sortData() {
+  //   if (this.selectedFilters.getValue().length === 0) {
+  //     this.taskColumns.next(this.allData);
+  //   } else {
+  //     this.taskColumns.next(this.allData);
+  //     const sortedTaskColumns = this.taskColumns.getValue().map((column) => {
+  //       return {
+  //         ...column,
+  //         cards: column.cards.filter((card) => {
+  //           const tags = card.tags;
 
-            for (let i = 0; i < tags.length; i++) {
-              if (this.selectedFilters.getValue().includes(tags[i].id)) {
-                return true;
-              }
-            }
-            return false;
-          }),
-        };
-      });
-      this.taskColumns.next(sortedTaskColumns);
-    }
-  }
+  //           for (let i = 0; i < tags.length; i++) {
+  //             if (this.selectedFilters.getValue().includes(tags[i].id)) {
+  //               return true;
+  //             }
+  //           }
+  //           return false;
+  //         }),
+  //       };
+  //     });
+  //     this.taskColumns.next(sortedTaskColumns);
+  //   }
+  // }
 }
