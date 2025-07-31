@@ -10,7 +10,7 @@ export interface TaskColumType {
 export interface TaskColumnRequest {
   name: string;
   color: string;
-  cards: CardType[];
+  projectId: null;
 }
 
 export interface TaskColumnResponse {

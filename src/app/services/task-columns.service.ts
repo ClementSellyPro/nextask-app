@@ -57,7 +57,7 @@ export class TaskColumnsService {
     const newColumn: TaskColumnRequest = {
       name: name,
       color: color,
-      cards: [],
+      projectId: null,
     };
 
     return this.http

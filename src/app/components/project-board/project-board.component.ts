@@ -4,10 +4,7 @@ import { ColorPickerModule } from 'primeng/colorpicker';
 import { FormsModule } from '@angular/forms';
 import { TaskColumnsService } from '../../services/task-columns.service';
 import { Observable } from 'rxjs';
-import {
-  TaskColumnResponse,
-  TaskColumType,
-} from '../../models/TaskColumn.model';
+import { TaskColumnResponse } from '../../models/TaskColumn.model';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -25,8 +22,7 @@ export class ProjectBoardComponent implements OnInit {
   constructor(private taskColumnsService: TaskColumnsService) {}
 
   ngOnInit(): void {
-    console.log('Init Board');
-    this.taskColumns$ = this.taskColumnsService.taskColumns$;
+    this.taskColumns$ = this.taskColumnsService.getData();
   }
 
   onClickNewColumn() {
@@ -34,8 +30,7 @@ export class ProjectBoardComponent implements OnInit {
   }
 
   onCloseNewColumn() {
-    this.title = '';
-    this.color = '#758bfd';
+    this.resetAddColumnForm();
     this.isAddNewColumn = false;
   }
 
@@ -43,6 +38,12 @@ export class ProjectBoardComponent implements OnInit {
     if (this.title) {
       this.taskColumnsService.addNewColumn(this.title, this.color).subscribe();
       this.isAddNewColumn = false;
+      this.resetAddColumnForm();
     }
+  }
+
+  resetAddColumnForm() {
+    this.title = '';
+    this.color = '#758bfd';
   }
 }
