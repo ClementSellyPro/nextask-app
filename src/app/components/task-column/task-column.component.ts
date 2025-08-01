@@ -2,10 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { ModalAddCardComponent } from '../modal-add-card/modal-add-card.component';
 import { AsyncPipe, NgIf } from '@angular/common';
-import {
-  TaskColumnResponse,
-  TaskColumType,
-} from '../../models/TaskColumn.model';
+import { TaskColumnResponse } from '../../models/TaskColumn.model';
 import { OptionColumnComponent } from '../option-column/option-column.component';
 import { TaskColumnsService } from '../../services/task-columns.service';
 import { CardType } from '../../models/Card.model';
@@ -16,11 +13,10 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-task-column',
   imports: [
-    TaskCardComponent,
+    // TaskCardComponent,
     ModalAddCardComponent,
     NgIf,
     OptionColumnComponent,
-    AsyncPipe,
   ],
   templateUrl: './task-column.component.html',
   styleUrl: './task-column.component.css',

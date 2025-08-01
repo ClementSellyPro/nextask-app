@@ -11,9 +11,9 @@
     />
   </div>
   <div class="tasks-container">
-    @for (cardData of (taskCardData | async); track $index) {
+    <!-- @for (cardData of (taskCardData | async); track $index) {
     <app-task-card [cardData]="cardData" [columnID]="columnData.id" />
-    }
+    } -->
     <div class="add-task-button">
       <p class="" (click)="onOpenModal()">+ Ajouter une carte</p>
     </div>

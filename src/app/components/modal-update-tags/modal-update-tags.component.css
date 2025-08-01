@@ -81,3 +81,9 @@
   display: flex;
   justify-content: space-between;
 }
+
+.no-tags-message {
+  background-color: var(--bg-color);
+  border-radius: var(--border-radius);
+  padding: 8px 12px;
+}
