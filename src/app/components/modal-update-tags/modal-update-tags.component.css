@@ -57,6 +57,11 @@
   padding: 2px 8px;
 }
 
+.update-tag-item {
+  border: 1px solid;
+  border-radius: var(--border-radius-button);
+}
+
 .update-tag-modify-icon {
   width: 15px;
 }

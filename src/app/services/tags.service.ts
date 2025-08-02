@@ -24,9 +24,9 @@ export class TagsService {
   }
 
   loadTags() {
-    this.http
-      .get<TagType[]>(`${this.apiUrl}/tags`)
-      .subscribe((tags) => this.tagList.next(tags));
+    this.http.get<TagType[]>(`${this.apiUrl}/tags`).subscribe((tags) => {
+      this.tagList.next(tags);
+    });
   }
 
   getTags(): Observable<TagType[]> {

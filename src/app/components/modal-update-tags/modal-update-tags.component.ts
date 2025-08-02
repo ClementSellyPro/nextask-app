@@ -24,8 +24,10 @@ export class ModalUpdateTagsComponent implements OnInit {
   @Output() addedTagsEvent = new EventEmitter<TagType[]>();
   @Input() currentTags!: TagType[];
   tagList$!: Observable<TagType[]>;
+
   isAddingNewTag: boolean = false;
   isUpdatingTag: boolean = false;
+
   tagToUpdateID!: string;
   selectedTags: TagType[] = [];
   isModalOpen: boolean = false;
@@ -92,7 +94,7 @@ export class ModalUpdateTagsComponent implements OnInit {
       color: this.newTagColor,
     };
 
-    if (newTag.name) {
+    if (newTag.name && newTag.color) {
       this.tagsService.addNewTag(newTag).subscribe();
       this.resetAddTagForm();
       this.closeAddNewTagModal();
