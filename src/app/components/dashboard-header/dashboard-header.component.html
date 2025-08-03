@@ -2,7 +2,12 @@
   <div>
     @if(isUpdatingTitle) {
     <div class="updating-form">
-      <input class="title-input" type="text" name="title-input" />
+      <input
+        class="title-input"
+        type="text"
+        name="title-input"
+        [(ngModel)]="titleUpdate"
+      />
       <div class="title-buttons">
         <button class="button-secondary" (click)="cancelTitleInput()">
           Annuler
@@ -14,7 +19,9 @@
     </div>
 
     } @else {
-    <h1 class="dashboard-title" (click)="onClickTitle()">Project Title</h1>
+    <h1 class="dashboard-title" (click)="onClickTitle()">
+      {{ (project$ | async)?.name }}
+    </h1>
     }
   </div>
 
