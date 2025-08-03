@@ -10,9 +10,9 @@ export interface CardType {
 }
 
 export interface CardRequest {
-  tags: TagType[];
   title: string;
   description: string;
   limitDate: Date;
   storyPoints: string;
+  tags: TagType[];
 }

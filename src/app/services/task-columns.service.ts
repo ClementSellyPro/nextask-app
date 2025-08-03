@@ -95,7 +95,7 @@ export class TaskColumnsService {
       tags: tagsId,
       column_id: columnID,
     };
-
+    console.log('NEW CARD ::: ', newCard);
     return this.http
       .post<CardRequest>(`${this.apiUrl}/cards`, newCard, this.httpOptions)
       .pipe(tap(() => this.loadColumnsData()));
