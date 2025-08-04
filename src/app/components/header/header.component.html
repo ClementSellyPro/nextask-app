@@ -14,7 +14,7 @@
     <div class="user-icon" (click)="onClickUser()">
       <img src="assets/user.svg" alt="Photo utilisateur" />
       <div class="user-menu" *ngIf="isUserMenuOpen">
-        <p class="deco-button">Deconnexion</p>
+        <p class="deco-button" (click)="onLogOut()">Deconnexion</p>
       </div>
     </div>
     }

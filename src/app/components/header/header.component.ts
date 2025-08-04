@@ -24,7 +24,13 @@ export class HeaderComponent implements OnInit {
 
     this.currentUrl = this.router.url;
   }
+
   onClickUser() {
     this.isUserMenuOpen = !this.isUserMenuOpen;
+  }
+
+  onLogOut() {
+    localStorage.removeItem('token');
+    this.router.navigateByUrl('/');
   }
 }
