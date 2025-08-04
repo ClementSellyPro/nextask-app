@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalFilterComponent } from '../modal-filter/modal-filter.component';
 import { ProjectService } from '../../services/project.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Project } from '../../models/Project.model';
+import { Project, UpdateProjectNameRequest } from '../../models/Project.model';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -42,17 +42,29 @@ export class DashboardHeaderComponent implements OnInit {
   }
 
   onClickTitle() {
+    this.titleUpdate = '';
     this.isUpdatingTitle = true;
   }
 
   cancelTitleInput() {
+    this.titleUpdate = '';
     this.isUpdatingTitle = false;
   }
 
   saveTitleInput() {
     if (this.titleUpdate) {
-      this.projectService.updateProjectName(this.titleUpdate);
-      this.isUpdatingTitle = false;
+      this.projectService.updateProjectName(this.titleUpdate).subscribe({
+        next: (updatedProject) => {
+          this.project.next(updatedProject);
+          this.titleUpdate = '';
+          this.isUpdatingTitle = false;
+        },
+        error: (error) => {
+          console.error('Erreur lors de la mise à jour du titre: ', error);
+          this.isUpdatingTitle = false;
+        },
+      });
+      this.loadProject();
     }
   }
 }
