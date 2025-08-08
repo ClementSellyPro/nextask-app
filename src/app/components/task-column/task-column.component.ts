@@ -5,7 +5,7 @@ import { AsyncPipe, NgIf } from '@angular/common';
 import { TaskColumnResponse } from '../../models/TaskColumn.model';
 import { OptionColumnComponent } from '../option-column/option-column.component';
 import { TaskColumnsService } from '../../services/task-columns.service';
-import { CardType } from '../../models/Card.model';
+import { CardResponse, CardType } from '../../models/Card.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
@@ -13,18 +13,21 @@ import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-task-column',
   imports: [
-    // TaskCardComponent,
+    TaskCardComponent,
     ModalAddCardComponent,
     NgIf,
     OptionColumnComponent,
+    AsyncPipe,
   ],
   templateUrl: './task-column.component.html',
   styleUrl: './task-column.component.css',
 })
 export class TaskColumnComponent implements OnInit {
+  apiUrl: string = 'http://localhost:9000/api';
+
   isModalTaskOpen: boolean = false;
   @Input() columnData!: TaskColumnResponse;
-  taskCardData!: Observable<CardType[]>;
+  taskCardData$!: Observable<CardResponse[]>;
 
   constructor(
     private taskColumnService: TaskColumnsService,
@@ -33,26 +36,28 @@ export class TaskColumnComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const token = this.authService.getToken();
+    // const token = this.authService.getToken();
 
-    const headers = new HttpHeaders()
-      .set('Authorization', `Bearer ${token}`)
-      .set('Content-Type', 'application/json');
+    // const headers = new HttpHeaders()
+    //   .set('Authorization', `Bearer ${token}`)
+    //   .set('Content-Type', 'application/json');
 
-    this.http
-      .get<any>(`http://localhost:9000/api/columns`, {
-        headers,
-      })
-      .subscribe({
-        next: (data) => {
-          this.taskCardData = data;
-        },
-        error: (error) => {
-          console.error('Erreur: ', error);
-          console.error('Status: ', error.status);
-          console.error('Message: ', error.message);
-        },
-      });
+    // this.http
+    //   .get<any>(`${this.apiUrl}/columns`, {
+    //     headers,
+    //   })
+    //   .subscribe({
+    //     next: (data) => {
+    //       this.taskCardData$ = data;
+    //     },
+    //     error: (error) => {
+    //       console.error('Erreur: ', error);
+    //       console.error('Status: ', error.status);
+    //       console.error('Message: ', error.message);
+    //     },
+    //   });
+
+    this.taskCardData$ = this.taskColumnService.getCards();
   }
 
   onOpenModal() {
@@ -60,7 +65,6 @@ export class TaskColumnComponent implements OnInit {
   }
 
   handleCloseModal() {
-    console.log('Parent: Événement reçu avec valeur:');
     this.isModalTaskOpen = false;
   }
 

@@ -6,7 +6,7 @@ import {
 } from '../models/TaskColumn.model';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { CardRequest, CardType } from '../models/Card.model';
+import { CardRequest, CardResponse, CardType } from '../models/Card.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { TagType } from '../models/Tag.model';
 
@@ -36,6 +36,7 @@ export class TaskColumnsService {
 
   constructor(private http: HttpClient) {
     this.loadColumnsData();
+    this.loadCards();
   }
 
   loadColumnsData() {
@@ -47,7 +48,7 @@ export class TaskColumnsService {
       });
   }
 
-  getData() {
+  getColumnData() {
     return this.taskColumns$;
   }
 
@@ -80,11 +81,26 @@ export class TaskColumnsService {
   }
 
   // ================ CARDS OPERATIONS =======================
+  cardList: BehaviorSubject<CardResponse[]> = new BehaviorSubject<
+    CardResponse[]
+  >([]);
+  cardList$: Observable<CardResponse[]> = this.cardList.asObservable();
 
   getTags(tags: TagType[]) {
     return tags.map((tag) => {
       return tag.id;
     });
+  }
+
+  loadCards() {
+    this.http.get<CardResponse[]>(`${this.apiUrl}/cards`).subscribe((data) => {
+      console.log(data);
+      this.cardList.next(data);
+    });
+  }
+
+  getCards() {
+    return this.cardList$;
   }
 
   addNewCard(card: CardRequest, columnID: string) {
@@ -95,7 +111,7 @@ export class TaskColumnsService {
       tags: tagsId,
       column_id: columnID,
     };
-    console.log('NEW CARD ::: ', newCard);
+
     return this.http
       .post<CardRequest>(`${this.apiUrl}/cards`, newCard, this.httpOptions)
       .pipe(tap(() => this.loadColumnsData()));

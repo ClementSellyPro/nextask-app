@@ -16,3 +16,14 @@ export interface CardRequest {
   storyPoints: string;
   tags: TagType[];
 }
+
+export interface CardResponse {
+  id: string;
+  description: string;
+  tags: TagType[];
+  limitDate: Date;
+  storyPoints: string;
+  title: string;
+  columnId: string;
+  project_id: string;
+}

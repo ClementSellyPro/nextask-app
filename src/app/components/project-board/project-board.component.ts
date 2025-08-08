@@ -22,7 +22,7 @@ export class ProjectBoardComponent implements OnInit {
   constructor(private taskColumnsService: TaskColumnsService) {}
 
   ngOnInit(): void {
-    this.taskColumns$ = this.taskColumnsService.getData();
+    this.taskColumns$ = this.taskColumnsService.getColumnData();
   }
 
   onClickNewColumn() {
