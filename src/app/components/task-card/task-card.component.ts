@@ -46,8 +46,7 @@ export class TaskCardComponent implements OnInit {
   }
 
   isTagInCard(tag: TagType) {
-    // return this.cardData.tags.some((t) => t.id === tag.id) ?? false;
-    return true;
+    return this.cardData.tags.some((t) => t.id === tag.id) ?? false;
   }
 
   onMouseHover() {
