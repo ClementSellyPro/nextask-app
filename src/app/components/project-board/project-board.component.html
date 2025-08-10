@@ -1,4 +1,4 @@
-<div class="project-board-container">
+<div class="project-board-container" appHorizontalScroll>
   @for (columnData of (taskColumns$ | async); track $index) {
   <app-task-column [columnData]="columnData" />
   }

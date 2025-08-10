@@ -5,11 +5,19 @@ import { FormsModule } from '@angular/forms';
 import { TaskColumnsService } from '../../services/task-columns.service';
 import { Observable } from 'rxjs';
 import { TaskColumnResponse } from '../../models/TaskColumn.model';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
+import { HorizontalScroll } from '../../directives/horizontal-scroll.directive';
 
 @Component({
   selector: 'app-project-board',
-  imports: [TaskColumnComponent, ColorPickerModule, FormsModule, AsyncPipe],
+  imports: [
+    TaskColumnComponent,
+    ColorPickerModule,
+    FormsModule,
+    AsyncPipe,
+    CommonModule,
+    HorizontalScroll,
+  ],
   templateUrl: './project-board.component.html',
   styleUrl: './project-board.component.css',
 })
