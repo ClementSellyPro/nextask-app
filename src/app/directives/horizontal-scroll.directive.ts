@@ -22,6 +22,15 @@ export class HorizontalScroll implements OnInit, OnDestroy {
 
     // mousedown
     element.addEventListener('mousedown', (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const isInteractiveELement =
+        target.matches('button, input, textarea, select, a') ||
+        target.closest('button, input, textarea, select, a');
+
+      if (isInteractiveELement) {
+        return;
+      }
+
       this.isDown = true;
       element.style.cursor = 'grabbing';
 
