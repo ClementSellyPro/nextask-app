@@ -94,7 +94,6 @@ export class TaskColumnsService {
 
   loadCards() {
     this.http.get<CardResponse[]>(`${this.apiUrl}/cards`).subscribe((data) => {
-      console.log(data);
       this.cardList.next(data);
     });
   }
