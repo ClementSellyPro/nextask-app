@@ -29,34 +29,9 @@ export class TaskColumnComponent implements OnInit {
   @Input() columnData!: TaskColumnResponse;
   taskCardData$!: Observable<CardResponse[]>;
 
-  constructor(
-    private taskColumnService: TaskColumnsService,
-    private authService: AuthService,
-    private http: HttpClient
-  ) {}
+  constructor(private taskColumnService: TaskColumnsService) {}
 
   ngOnInit(): void {
-    // const token = this.authService.getToken();
-
-    // const headers = new HttpHeaders()
-    //   .set('Authorization', `Bearer ${token}`)
-    //   .set('Content-Type', 'application/json');
-
-    // this.http
-    //   .get<any>(`${this.apiUrl}/columns`, {
-    //     headers,
-    //   })
-    //   .subscribe({
-    //     next: (data) => {
-    //       this.taskCardData$ = data;
-    //     },
-    //     error: (error) => {
-    //       console.error('Erreur: ', error);
-    //       console.error('Status: ', error.status);
-    //       console.error('Message: ', error.message);
-    //     },
-    //   });
-
     this.taskCardData$ = this.taskColumnService.getCards();
   }
 

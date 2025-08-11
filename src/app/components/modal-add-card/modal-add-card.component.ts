@@ -140,7 +140,12 @@ export class ModalAddCardComponent implements OnInit {
       storyPoints: formData.storyPoints!,
     };
 
-    this.taskColumnsService.updateCard(updatedCard, this.columnID).subscribe();
+    this.taskColumnsService.updateCard(updatedCard, this.columnID).subscribe({
+      next: (response) => {
+        this.taskColumnsService.loadCards();
+        console.log(response);
+      },
+    });
     this.closeModal.emit();
   }
 

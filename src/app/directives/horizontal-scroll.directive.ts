@@ -18,7 +18,7 @@ export class HorizontalScroll implements OnInit, OnDestroy {
     const element = this.el.nativeElement;
 
     element.style.userSelect = 'none';
-    element.style.cursor = 'grab';
+    element.style.cursor = 'default';
 
     // mousedown
     element.addEventListener('mousedown', (e: MouseEvent) => {
@@ -54,14 +54,14 @@ export class HorizontalScroll implements OnInit, OnDestroy {
     // mouseup
     this.mouseUpListener = () => {
       this.isDown = false;
-      element.style.cursor = 'grab';
+      element.style.cursor = 'default';
     };
     document.addEventListener('mouseup', this.mouseUpListener);
 
     // mouseleave
     this.mouseLeaveListener = () => {
       this.isDown = false;
-      element.style.cursor = 'grab';
+      element.style.cursor = 'default';
     };
     element.addEventListener('mouseLeave', this.mouseLeaveListener);
 

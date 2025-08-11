@@ -4,7 +4,7 @@ import {
   TaskColumnResponse,
   TaskColumType,
 } from '../models/TaskColumn.model';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { CardRequest, CardResponse, CardType } from '../models/Card.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -126,12 +126,16 @@ export class TaskColumnsService {
     };
 
     return this.http
-      .put<CardType>(
-        `${this.apiUrl}/cards/${card.id}`,
-        updatedCard,
-        this.httpOptions
-      )
-      .pipe(tap(() => this.loadColumnsData()));
+      .put<CardResponse>(`${this.apiUrl}/cards/${card.id}`, updatedCard)
+      .pipe(
+        tap(() => {
+          this.loadColumnsData();
+        }),
+        catchError((error) => {
+          console.error('update error: ', error);
+          throw error;
+        })
+      );
   }
 
   deleteCard(cardID: string) {
@@ -153,30 +157,5 @@ export class TaskColumnsService {
         this.selectedFilters.next(updatedFilters);
       }
     }
-    // this.sortData();
   }
-
-  // sortData() {
-  //   if (this.selectedFilters.getValue().length === 0) {
-  //     this.taskColumns.next(this.allData);
-  //   } else {
-  //     this.taskColumns.next(this.allData);
-  //     const sortedTaskColumns = this.taskColumns.getValue().map((column) => {
-  //       return {
-  //         ...column,
-  //         cards: column.cards.filter((card) => {
-  //           const tags = card.tags;
-
-  //           for (let i = 0; i < tags.length; i++) {
-  //             if (this.selectedFilters.getValue().includes(tags[i].id)) {
-  //               return true;
-  //             }
-  //           }
-  //           return false;
-  //         }),
-  //       };
-  //     });
-  //     this.taskColumns.next(sortedTaskColumns);
-  //   }
-  // }
 }

@@ -2,11 +2,11 @@ import { TagType } from './Tag.model';
 
 export interface CardType {
   id: string;
-  tags: TagType[];
   title: string;
   description: string;
   limitDate: Date;
   storyPoints: string;
+  tags: TagType[];
 }
 
 export interface CardRequest {
@@ -19,11 +19,11 @@ export interface CardRequest {
 
 export interface CardResponse {
   id: string;
+  title: string;
   description: string;
-  tags: TagType[];
   limitDate: Date;
   storyPoints: string;
-  title: string;
+  tags: TagType[];
   columnId: string;
   project_id: string;
 }
