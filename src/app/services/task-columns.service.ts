@@ -7,7 +7,7 @@ import {
 import { BehaviorSubject, catchError, Observable, tap } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
 import { CardRequest, CardResponse, CardType } from '../models/Card.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TagType } from '../models/Tag.model';
 
 @Injectable({
@@ -93,9 +93,27 @@ export class TaskColumnsService {
   }
 
   loadCards() {
-    this.http.get<CardResponse[]>(`${this.apiUrl}/cards`).subscribe((data) => {
-      this.cardList.next(data);
-    });
+    const selectedTags = this.selectedFilters.getValue();
+
+    if (selectedTags.length === 0) {
+      return this.http
+        .get<CardResponse[]>(`${this.apiUrl}/cards`)
+        .subscribe((data) => {
+          this.cardList.next(data);
+        });
+    } else {
+      const params = new HttpParams({
+        fromObject: {
+          tagIds: selectedTags,
+        },
+      });
+
+      return this.http
+        .get<CardResponse[]>(`${this.apiUrl}/cards/tag`, { params })
+        .subscribe((data) => {
+          this.cardList.next(data);
+        });
+    }
   }
 
   getCards() {
@@ -161,5 +179,6 @@ export class TaskColumnsService {
         this.selectedFilters.next(updatedFilters);
       }
     }
+    this.loadCards();
   }
 }
