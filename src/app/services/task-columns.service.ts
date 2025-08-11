@@ -139,9 +139,13 @@ export class TaskColumnsService {
   }
 
   deleteCard(cardID: string) {
-    return this.http
-      .delete(`${this.apiUrl}/cards/${cardID}`)
-      .pipe(tap(() => this.loadColumnsData()));
+    return this.http.delete(`${this.apiUrl}/cards/${cardID}`).pipe(
+      tap(() => this.loadCards()),
+      catchError((error) => {
+        console.error('delete error: ', error);
+        throw error;
+      })
+    );
   }
 
   updateSelectedFilters(id: string) {
