@@ -47,3 +47,11 @@
   background-color: var(--bg-element);
   filter: brightness(0.95);
 }
+
+.empty-placeholder {
+  padding: 8px;
+  color: #888;
+  font-style: italic;
+  border: 2px dashed transparent;
+  text-align: center;
+}

@@ -18,6 +18,10 @@
     [cdkDropListConnectedTo]="connectedLists"
     (cdkDropListDropped)="drop($event)"
   >
+    @if (columnData.cards.length === 0) {
+    <div class="empty-placeholder">Glissez ou ajouter une carte</div>
+    }
+    <!-- // -->
     @for (cardData of (columnData.cards); track cardData.id) {
     @if(cardData.columnId === columnData.id){
     <div cdkDrag>
