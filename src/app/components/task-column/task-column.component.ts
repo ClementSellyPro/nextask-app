@@ -46,6 +46,7 @@ export class TaskColumnComponent implements OnInit {
   }
 
   handleDeleteColumn(id: string) {
+    console.log(id);
     this.taskColumnService.deleteColumn(id).subscribe();
     this.isModalTaskOpen = false;
   }
@@ -57,6 +58,17 @@ export class TaskColumnComponent implements OnInit {
         event.previousIndex,
         event.currentIndex
       );
+
+      const movedCard = event.container.data[event.currentIndex];
+      if (movedCard) {
+        this.taskColumnService
+          .updateCardPosition(movedCard.id, event.currentIndex)
+          .subscribe({
+            error: (err) => {
+              console.error('Erreur update position : ', err);
+            },
+          });
+      }
     } else {
       transferArrayItem(
         event.previousContainer.data,
@@ -65,12 +77,22 @@ export class TaskColumnComponent implements OnInit {
         event.currentIndex
       );
 
-      const moved = event.container.data[event.currentIndex];
-      if (moved) {
-        moved.columnId = this.columnData.id;
+      const movedCard = event.container.data[event.currentIndex];
+      if (movedCard) {
+        movedCard.columnId = this.columnData.id;
+
+        this.taskColumnService
+          .moveCardToColumn(
+            movedCard.id,
+            this.columnData.id,
+            event.currentIndex
+          )
+          .subscribe({
+            error: (err) => {
+              console.error('Erreur déplacement colonne: ', err);
+            },
+          });
       }
     }
-
-    // need to save to backend
   }
 }

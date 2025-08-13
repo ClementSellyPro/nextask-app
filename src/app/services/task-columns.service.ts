@@ -185,8 +185,22 @@ export class TaskColumnsService {
 
   // ================ CARDS POSITION OPERATIONS =======================
   updateCardPosition(id: string, newPosition: number): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/${id}/position`, {
-      newPosition: newPosition,
-    });
+    return this.http.put<void>(
+      `${this.apiUrl}/cards/${id}/position`,
+      { newPosition },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
+  }
+
+  moveCardToColumn(
+    id: string,
+    newColumnId: string,
+    newPosition: number
+  ): Observable<void> {
+    return this.http.put<void>(
+      `${this.apiUrl}/cards/${id}/move`,
+      { newColumnId, newPosition },
+      { headers: { 'Content-Type': 'application/json' } }
+    );
   }
 }
