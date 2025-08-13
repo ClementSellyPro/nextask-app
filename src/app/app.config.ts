@@ -10,6 +10,7 @@ import { LOCALE_ID } from '@angular/core';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { authInterceptor } from './auth/auth-interceptor';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     { provide: LOCALE_ID, useValue: 'fr-FR' },
     provideHttpClient(withInterceptors([authInterceptor])),
-    importProvidersFrom(FormsModule),
+    importProvidersFrom(FormsModule, DragDropModule),
   ],
 };

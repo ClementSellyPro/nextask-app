@@ -1,6 +1,9 @@
 <div class="project-board-container" appHorizontalScroll>
-  @for (columnData of (taskColumns$ | async); track $index) {
-  <app-task-column [columnData]="columnData" />
+  @for (columnData of (columnsWithCards$ | async); track $index) {
+  <app-task-column
+    [columnData]="columnData"
+    [connectedLists]="columnData.connectedLists"
+  />
   }
 
   <!-- conditional display, if adding a new column -->

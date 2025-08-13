@@ -23,6 +23,11 @@ export class HorizontalScroll implements OnInit, OnDestroy {
     // mousedown
     element.addEventListener('mousedown', (e: MouseEvent) => {
       const target = e.target as HTMLElement;
+
+      if (target.closest('[cdkDrag]')) {
+        return;
+      }
+
       const isInteractiveELement =
         target.matches('button, input, textarea, select, a') ||
         target.closest('button, input, textarea, select, a');
@@ -67,6 +72,12 @@ export class HorizontalScroll implements OnInit, OnDestroy {
 
     // mobile
     element.addEventListener('touchstart', (e: TouchEvent) => {
+      const target = e.target as HTMLElement;
+
+      if (target.closest('[cdkDrag]')) {
+        return;
+      }
+
       this.isDown = true;
       this.startX = e.touches[0].pageX - element.offsetLeft;
       this.scrollLeft = element.scrollLeft;

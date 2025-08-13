@@ -131,8 +131,7 @@ export class ModalAddCardComponent implements OnInit {
   onUpdateCard(id: string) {
     const formData = this.cardForm.value;
 
-    const updatedCard: CardType = {
-      id: id,
+    const updatedCard: CardRequest = {
       title: formData.title!,
       description: formData.description!,
       tags: this.selectedTags.getValue(),
@@ -140,12 +139,14 @@ export class ModalAddCardComponent implements OnInit {
       storyPoints: formData.storyPoints!,
     };
 
-    this.taskColumnsService.updateCard(updatedCard, this.columnID).subscribe({
-      next: (response) => {
-        this.taskColumnsService.loadCards();
-        console.log(response);
-      },
-    });
+    this.taskColumnsService
+      .updateCard(updatedCard, this.columnID, id)
+      .subscribe({
+        next: (response) => {
+          this.taskColumnsService.loadCards();
+          console.log(response);
+        },
+      });
     this.closeModal.emit();
   }
 

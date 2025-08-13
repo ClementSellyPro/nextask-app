@@ -1,4 +1,4 @@
-import { CardType } from './Card.model';
+import { CardResponse, CardType } from './Card.model';
 
 export interface TaskColumType {
   id: string;
@@ -18,4 +18,13 @@ export interface TaskColumnResponse {
   name: string;
   color: string;
   projectId: string;
+}
+
+export interface TaskColumnWithCards {
+  id: string;
+  name: string;
+  color: string;
+  projectId: string;
+  cards: CardResponse[];
+  connectedLists: string[];
 }

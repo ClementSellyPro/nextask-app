@@ -134,17 +134,18 @@ export class TaskColumnsService {
       .pipe(tap(() => this.loadColumnsData()));
   }
 
-  updateCard(card: CardType, columnID: string) {
+  updateCard(card: CardRequest, columnID: string, id: string) {
     const tagsId = this.getTags(card.tags);
 
     const updatedCard = {
       ...card,
       tags: tagsId,
       column_id: columnID,
+      id: id,
     };
 
     return this.http
-      .put<CardResponse>(`${this.apiUrl}/cards/${card.id}`, updatedCard)
+      .put<CardResponse>(`${this.apiUrl}/cards/${id}`, updatedCard)
       .pipe(
         tap(() => {
           this.loadColumnsData();
@@ -180,5 +181,12 @@ export class TaskColumnsService {
       }
     }
     this.loadCards();
+  }
+
+  // ================ CARDS POSITION OPERATIONS =======================
+  updateCardPosition(id: string, newPosition: number): Observable<void> {
+    return this.http.put<void>(`${this.apiUrl}/${id}/position`, {
+      newPosition: newPosition,
+    });
   }
 }

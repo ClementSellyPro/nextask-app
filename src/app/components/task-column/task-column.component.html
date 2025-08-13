@@ -10,10 +10,19 @@
       (deleteColumnEvent)="handleDeleteColumn(columnData.id)"
     />
   </div>
-  <div class="tasks-container">
-    @for (cardData of (taskCardData$ | async); track $index) {
+  <div
+    class="tasks-container"
+    [id]="columnData.id"
+    cdkDropList
+    [cdkDropListData]="columnData.cards"
+    [cdkDropListConnectedTo]="connectedLists"
+    (cdkDropListDropped)="drop($event)"
+  >
+    @for (cardData of (columnData.cards); track cardData.id) {
     @if(cardData.columnId === columnData.id){
-    <app-task-card [cardData]="cardData" [columnID]="columnData.id" />
+    <div cdkDrag>
+      <app-task-card [cardData]="cardData" [columnID]="columnData.id" />
+    </div>
     } }
     <div class="add-task-button">
       <p class="" (click)="onOpenModal()">+ Ajouter une carte</p>

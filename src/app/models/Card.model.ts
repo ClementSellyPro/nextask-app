@@ -7,6 +7,7 @@ export interface CardType {
   limitDate: Date;
   storyPoints: string;
   tags: TagType[];
+  position: number;
 }
 
 export interface CardRequest {
@@ -26,4 +27,5 @@ export interface CardResponse {
   tags: TagType[];
   columnId: string;
   project_id: string;
+  position: number;
 }
