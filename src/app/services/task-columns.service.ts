@@ -9,12 +9,13 @@ import { v4 as uuidv4 } from 'uuid';
 import { CardRequest, CardResponse, CardType } from '../models/Card.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { TagType } from '../models/Tag.model';
+import { environment } from '../../../environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskColumnsService {
-  private apiUrl = 'http://localhost:9000/api';
+  private apiUrl = environment.apiUrl;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

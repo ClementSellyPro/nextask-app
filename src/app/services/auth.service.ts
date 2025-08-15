@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { LoginResponse } from '../models/Auth.model';
+import { environment } from '../../../environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:9000/api/auth';
+  private apiUrl = environment.apiUrl;
   private token = new BehaviorSubject<string | null>(this.getToken());
   public token$ = this.token.asObservable();
 
@@ -19,14 +20,14 @@ export class AuthService {
       password: password,
     };
 
-    return this.http.post<any>(`${this.apiUrl}/register`, newUser, {
+    return this.http.post<any>(`${this.apiUrl}/auth/register`, newUser, {
       responseType: 'text' as 'json',
     });
   }
 
   login(username: string, password: string): Observable<LoginResponse> {
     return this.http
-      .post<LoginResponse>(`${this.apiUrl}/login`, { username, password })
+      .post<LoginResponse>(`${this.apiUrl}/auth/login`, { username, password })
       .pipe(
         tap((response) => {
           if (response.token) {

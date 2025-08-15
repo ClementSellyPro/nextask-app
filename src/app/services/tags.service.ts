@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject, takeUntil, tap } from 'rxjs';
 import { TagRequest, TagType } from '../models/Tag.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../environment.prod';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TagsService {
   private destroy$ = new Subject<void>();
-  private apiUrl = 'http://localhost:9000/api';
+  private apiUrl = environment.apiUrl;
 
   private httpOptions = {
     headers: new HttpHeaders({
