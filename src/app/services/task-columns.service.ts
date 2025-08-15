@@ -183,6 +183,18 @@ export class TaskColumnsService {
     this.loadCards();
   }
 
+  updateCompleted(id: string, isCompleted: boolean) {
+    return this.http
+      .put(`${this.apiUrl}/cards/${id}/completed`, { isCompleted: isCompleted })
+      .pipe(
+        tap(() => this.loadCards),
+        catchError((error) => {
+          console.error('Update completed :', error);
+          throw error;
+        })
+      );
+  }
+
   // ================ CARDS POSITION OPERATIONS =======================
   updateCardPosition(id: string, newPosition: number): Observable<void> {
     return this.http.put<void>(

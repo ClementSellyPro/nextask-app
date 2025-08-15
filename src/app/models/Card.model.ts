@@ -8,6 +8,7 @@ export interface CardType {
   storyPoints: string;
   tags: TagType[];
   position: number;
+  isCompleted: boolean;
 }
 
 export interface CardRequest {
@@ -28,4 +29,5 @@ export interface CardResponse {
   columnId: string;
   project_id: string;
   position: number;
+  isCompleted: boolean;
 }
