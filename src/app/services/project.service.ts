@@ -18,6 +18,6 @@ export class ProjectService {
 
   updateProjectName(newName: string): Observable<Project> {
     const request: UpdateProjectNameRequest = { name: newName };
-    return this.http.put<Project>(`${this.apiUrl}projects/name`, request);
+    return this.http.put<Project>(`${this.apiUrl}/projects/name`, request);
   }
 }
