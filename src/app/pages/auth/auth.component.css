@@ -73,6 +73,14 @@ input:focus {
   filter: brightness(0.9);
 }
 
+.input-error {
+  border-color: var(--red-color);
+}
+
+p.input-error {
+  color: var(--red-color);
+}
+
 @media (max-width: 1199px) {
   .auth-container {
     height: calc(100vh - 100px);

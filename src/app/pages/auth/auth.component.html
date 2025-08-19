@@ -9,12 +9,25 @@
   <form>
     <div class="input-group">
       <label>Nom d'utilisateur:</label>
-      <input type="text" name="name" [(ngModel)]="name" />
+      <input
+        [ngClass]="{ 'input-error': inputError }"
+        type="text"
+        name="name"
+        [(ngModel)]="name"
+      />
     </div>
     <div class="input-group">
       <label>Mot de passe:</label>
-      <input type="password" name="password" [(ngModel)]="password" />
+      <input
+        [ngClass]="{ 'input-error': inputError }"
+        type="password"
+        name="password"
+        [(ngModel)]="password"
+      />
     </div>
+    <p *ngIf="inputError" [ngClass]="{ 'input-error': inputError }">
+      Les identifiants renseignées ne sont pas valide.
+    </p>
 
     <button
       class="button-primary button-create-account"
