@@ -26,6 +26,9 @@ export class AuthComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.isLoginMode = params['mode'] === 'login';
     });
+    if (this.authService.getToken()) {
+      this.router.navigateByUrl('/dashboard');
+    }
   }
 
   onSubmitLogin() {
