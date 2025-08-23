@@ -68,3 +68,23 @@
   padding: 0;
   border: 2px solid var(--red-color);
 }
+
+@media (max-width: 1199px) {
+  .project-board-container {
+    gap: 12px;
+    padding: 24px 18px;
+  }
+
+  .add-column-button,
+  .adding-column-button {
+    min-width: 200px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-column-button,
+  .adding-column-button {
+    min-width: 160px;
+  }
+}

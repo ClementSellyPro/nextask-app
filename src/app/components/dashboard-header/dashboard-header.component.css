@@ -56,3 +56,9 @@
   max-height: 40px;
   font-size: 14px;
 }
+
+@media (max-width: 1199px) {
+  .dashboard-header {
+    padding: 0 18px;
+  }
+}
