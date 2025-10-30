@@ -33,7 +33,13 @@
       class="button-primary button-create-account"
       (click)="isLoginMode ? onSubmitLogin() : onSubmitSignup()"
     >
-      {{ isLoginMode ? "Se connecter" : "Créer un compte" }}
+      {{
+        isLoading
+          ? "Chargement..."
+          : isLoginMode
+          ? "Se connecter"
+          : "Créer un compte"
+      }}
     </button>
   </form>
   <div class="auth-bottom">
